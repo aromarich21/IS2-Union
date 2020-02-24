@@ -1,0 +1,32 @@
+﻿@page
+@model ErrorModel
+@{
+    ViewData["Title"] = "Error";
+}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                <span class="display-1 d-block">Ошибка</span>
+                <div class="mb-4 lead">
+                    @if (Model.ShowRequestId)
+                    {
+                        <p>
+                            @if (ErrorModel.ErrorMessage != "" && ErrorModel.ErrorMessage != null)
+                                @ErrorModel.ErrorMessage
+                                else
+                                    @ErrorModel.DefaultMessage
+                        </p>
+                        <p>Request ID:<code>@Model.RequestId</code></p>
+                    }
+                    <a asp-page="Index" class="btn btn-link">Вернуться на главную страницу</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

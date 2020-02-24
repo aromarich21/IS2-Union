@@ -1,0 +1,30 @@
+﻿@page
+@model frontend_service.ApplicationStep2Model
+@using Models
+@{
+    ViewData["Title"] = "ApplicationStep2";
+    string token = Request.Cookies["token_"];
+    var index = Model.index;
+}
+
+<div class="jumbotron">
+    <p style="font-size: 58px">
+        <img src="/Files/logo.png" width="80" height="80" align="middle"> Продолжим?
+    </p>
+    <p class="lead">Для успешной интеграции выполните действия по шагам, указанным ниже.</p>
+</div>
+
+<form class="form-group" method="post">
+    <h2>Шаг 4</h2>
+    <p>Выберите элемент для интеграции</p>
+    <div class="input-group">
+        <select class="custom-select" id="dropdown_select" asp-for="SelectId" name="elementsId" asp-items="Startup.clientData[index].Options"></select>
+        <div class="input-group-append">
+            <input type="submit" value="Интегрировать" class="btn btn-outline-secondary" />
+        </div>       
+    </div>
+</form>
+
+<p>UC: @Model.UserChoice</p>
+<p>YourData: @index</p>
+

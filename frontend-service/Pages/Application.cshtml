@@ -1,0 +1,46 @@
+﻿@page
+@model frontend_service.ApplicationModel
+@using filejob_service.Models;
+@{
+    ViewData["Title"] = "Приложение";
+    string titleUpload1 = "Файл исходной диаграммы";
+    string titleUpload2 = "Файл интегрируемой диаграммы";
+}
+
+<div class="jumbotron">
+    <p style="font-size: 58px">
+        <img src="/Files/logo.png" width="80" height="80" align="middle"> Приступим к соединению?
+    </p>
+    <p class="lead">Для успешной интеграции выполните действия по шагам, указанным ниже.</p>
+</div>
+
+<form class="was-validated" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <h2>Шаг 1</h2>
+        <p>Для работы необходимо выбрать исходный файл <*.is2>.</p>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputFileCurrent" accept=".is2" asp-for="Upload" required>
+            <label class="custom-file-label" for="inputFileCurrent" id ="select_file">@titleUpload1</label>
+            <div class="invalid-feedback">Файл не выбран</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <h2>Шаг 2</h2>
+        <p>Для работы необходимо выбрать интегрируемый файл <*.is2>.</p>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputFileIntegr" accept=".is2" asp-for="Upload2" required>
+            <label class="custom-file-label" for="inputFileIntegr">@titleUpload2</label>
+            <div class="invalid-feedback">Файл не выбран</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <h2>Шаг 3</h2>
+        <p>Для работы необходимо загрузить файлы <*.is2>.</p>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Загрузить</button>
+        </div>
+    </div>
+</form>
+
