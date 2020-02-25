@@ -37,11 +37,11 @@ namespace frontend_service
         int AssignClientData()
         {
             int indexClientData;
-            ClientData _clientData = new ClientData(token_);
+            Models.ClientData _clientData = new Models.ClientData(token_);
             if (Startup.clientData != null)
             {
                 var count = 0;
-                foreach (ClientData item in Startup.clientData)
+                foreach (Models.ClientData item in Startup.clientData)
                 {
                     if (item.Token == token_)
                     {

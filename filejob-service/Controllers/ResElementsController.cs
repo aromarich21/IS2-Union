@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using filejob_service.Models;
@@ -66,7 +65,6 @@ namespace filejob_service.Controllers
                     if (item.Token == token)
                     {
                         item.elements.Clear();
-                        //checkToken = true;
                         return Ok();
                     }
                 }

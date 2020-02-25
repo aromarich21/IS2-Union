@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using filejob_service.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nancy.Json;
 
@@ -13,14 +11,6 @@ namespace filejob_service.Controllers
     [ApiController]
     public class CurLinksController : ControllerBase
     {
-        /*
-         public IEnumerable<Links> Get()
-        {
-            List<Links> links = Startup.links;
-            return links.AsEnumerable();
-        }
-         */
-
         [HttpGet]
         public string Get(string token)
         {
@@ -37,7 +27,6 @@ namespace filejob_service.Controllers
             return "Not found";
         }
 
-        // POST api/elements
         [HttpPost]
         public async Task<IActionResult> Post(string afe1, string afe2, string afe3, string type, string token)
         {
@@ -64,16 +53,6 @@ namespace filejob_service.Controllers
                 }
             }
             return BadRequest();
-
-
-            /*
-
-            //var lastindex = Startup.elements.Count;
-            Links inputLink = new Links(afe1, afe2, afe3, type);
-            Startup.links.Add(inputLink);
-            return Ok();
-
-            */
         }
 
         [HttpDelete]

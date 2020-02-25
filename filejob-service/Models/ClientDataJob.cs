@@ -1,8 +1,6 @@
 ﻿using Nancy.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace filejob_service.Models
 {
@@ -12,11 +10,20 @@ namespace filejob_service.Models
         public List<string> Entity { get; set; }
         public string Json { get; set; }
         public readonly string _token;
+        public readonly string _index;
         public ClientDataJob(string token)
         {
             _token = token;
             DefaultFunction();
-            Json = GetData(_token, "null", "null");  
+            Json = GetData(_token, "null", "null");
+            
+        }
+        public ClientDataJob(string token, List<ClientData> sourceClientData)
+        {
+            _token = token;
+            DefaultFunction();
+            Json = GetData(_token, "null", "null");
+            _index = FindIndexSourceClientData(sourceClientData);
         }
         public ClientDataJob(string token,string type)
         {
@@ -43,94 +50,90 @@ namespace filejob_service.Models
         }
         public string GetData(string token, string type, string entity)
         {
-            foreach (SourceClientData sourceClientData in Startup.sourceClientData)
+            foreach (ClientData clientData in Startup.clientData)
             {
-                if (sourceClientData.Token == token)
+                if (clientData.Token == token)
                 {
                     if (type == Types[0])
                     {
                         if (entity == Entity[0])
                         {
-                            return GetElements(sourceClientData.Cur);
+                            return GetElements(clientData.Current);
                         }
                         if (entity == Entity[1])
                         {
-                            return GetLinks(sourceClientData.Cur);
+                            return GetLinks(clientData.Current);
                         }
-                        return GetUnit(sourceClientData.Cur);
+                        return GetUnit(clientData.Current);
                     }
                     if (type == Types[1])
                     {
                         if (entity == Entity[0])
                         {
-                            return GetElements(sourceClientData.Int);
+                            return GetElements(clientData.Integration);
                         }
                         if (entity == Entity[1])
                         {
-                            return GetLinks(sourceClientData.Int);
+                            return GetLinks(clientData.Integration);
                         }
-                        return GetUnit(sourceClientData.Int);
+                        return GetUnit(clientData.Integration);
                     }
                     if (type == Types[2])
                     {
                         if (entity == Entity[0])
                         {
-                            return GetElements(sourceClientData.Res);
+                            return GetElements(clientData.Result);
                         }
                         if (entity == Entity[1])
                         {
-                            return GetLinks(sourceClientData.Res);
+                            return GetLinks(clientData.Result);
                         }
-                        return GetUnit(sourceClientData.Res);
+                        return GetUnit(clientData.Result);
                     }
-                    return GetClientDataUnits(sourceClientData);
+                    return GetClientDataUnits(clientData);
                 }            
             }
             return "Not found";
         }
 
-        public string GetElements(SourceUnits sourceUnits)
+        public string GetElements(Units unit)
         {
-            var elements = sourceUnits.Elements.AsEnumerable();
+            var elements = unit.Elements.AsEnumerable();
             var jsonElements = new JavaScriptSerializer().Serialize(elements);
             return jsonElements;
         }
 
-        public string GetLinks(SourceUnits sourceUnits)
+        public string GetLinks(Units unit)
         {
-            var links = sourceUnits.Links.AsEnumerable();
+            var links = unit.Links.AsEnumerable();
             var jsonLinks = new JavaScriptSerializer().Serialize(links);
             return jsonLinks;
         }
 
-        public string GetUnit(SourceUnits sourceUnits)
+        public string GetUnit(Units unit)
         {
-            var jsonUnit = GetElements(sourceUnits) + GetLinks(sourceUnits);
+            var jsonUnit = GetElements(unit) + GetLinks(unit);
             return jsonUnit;
         }
 
-        public string GetClientDataUnits(SourceClientData sourceClientData)
+        public string GetClientDataUnits(ClientData clientData)
         {
-            var jsonClientDataUnits = GetUnit(sourceClientData.Cur) + GetUnit(sourceClientData.Int) + GetUnit(sourceClientData.Res);
+            var jsonClientDataUnits = GetUnit(clientData.Current) + GetUnit(clientData.Integration) + GetUnit(clientData.Result);
             return jsonClientDataUnits;
         }
 
-        public int FindIndexSourceClientData(List<SourceClientData> sourceClientData)
+        public string FindIndexSourceClientData(List<ClientData> sourceClientData)
         {
             var count = 0;
-            foreach (SourceClientData item in sourceClientData)
+            foreach (ClientData item in sourceClientData)
             {
                 if (_token == item.Token)
                 {
-                    return count;
+                    return count.ToString();
                 }
                 count++;
             }
-            return 00;
-        }
-        public void AddElement()
-        {
-            
+            return "Not found";
         }
     }
 }

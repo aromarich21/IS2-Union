@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using filejob_service.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nancy.Json;
 
@@ -29,7 +27,6 @@ namespace filejob_service.Controllers
             return "Not found";
         }
 
-        // POST api/elements
         [HttpPost]
         public async Task<IActionResult> Post(string name, string id, string level, string number, string status, string type, string formalization, string token)
         {
@@ -61,7 +58,6 @@ namespace filejob_service.Controllers
         [HttpDelete]
         public async Task<IActionResult> Delete(string token)
         {
-            //var checkToken = false;
             if (token != null && token != "")
             {
                 foreach (SourceElements item in Startup.sourceIntElements)
@@ -69,7 +65,6 @@ namespace filejob_service.Controllers
                     if (item.Token == token)
                     {
                         item.elements.Clear();
-                        //checkToken = true;
                         return Ok();
                     }
                 }
