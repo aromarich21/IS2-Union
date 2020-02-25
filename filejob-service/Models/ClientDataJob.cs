@@ -11,20 +11,24 @@ namespace filejob_service.Models
         public List<string> Types { get; set; }
         public List<string> Entity { get; set; }
         public string Json { get; set; }
+        public readonly string _token;
         public ClientDataJob(string token)
         {
+            _token = token;
             DefaultFunction();
-            Json = GetData(token, "null", "null");
+            Json = GetData(_token, "null", "null");  
         }
         public ClientDataJob(string token,string type)
         {
+            _token = token;
             DefaultFunction();
-            Json = GetData(token, type, "null");
+            Json = GetData(_token, type, "null");
         }
         public ClientDataJob(string token, string type, string entity)
         {
+            _token = token;
             DefaultFunction();
-            Json = GetData(token, type, entity);
+            Json = GetData(_token, type, entity);
         }
 
         public void DefaultFunction()
@@ -109,6 +113,24 @@ namespace filejob_service.Models
         {
             var jsonClientDataUnits = GetUnit(sourceClientData.Cur) + GetUnit(sourceClientData.Int) + GetUnit(sourceClientData.Res);
             return jsonClientDataUnits;
+        }
+
+        public int FindIndexSourceClientData(List<SourceClientData> sourceClientData)
+        {
+            var count = 0;
+            foreach (SourceClientData item in sourceClientData)
+            {
+                if (_token == item.Token)
+                {
+                    return count;
+                }
+                count++;
+            }
+            return 00;
+        }
+        public void AddElement()
+        {
+            
         }
     }
 }

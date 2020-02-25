@@ -30,6 +30,7 @@ namespace filejob_service
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            sourceClientData = new List<SourceClientData>();
             CreateSources();
             TestFunction();
         }
@@ -91,7 +92,6 @@ namespace filejob_service
             Links link = new Links("afe1", "afe2", "afe3", "test");
             SourceUnits sourceUnits= new SourceUnits(element,link);
             SourceClientData source1ClientData = new SourceClientData("test", sourceUnits, sourceUnits, sourceUnits);
-            sourceClientData = new List<SourceClientData>();
             sourceClientData.Add(source1ClientData);
         }
     }

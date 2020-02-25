@@ -9129,11 +9129,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\aroma\\Desktop\\application-is2\\frontend-service\\frontend-service.csproj",
+      "projectUniqueName": "F:\\dev\\frontend-service\\frontend-service.csproj",
       "projectName": "frontend-service",
-      "projectPath": "C:\\Users\\aroma\\Desktop\\application-is2\\frontend-service\\frontend-service.csproj",
+      "projectPath": "F:\\dev\\frontend-service\\frontend-service.csproj",
       "packagesPath": "C:\\Users\\aroma\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aroma\\Desktop\\application-is2\\frontend-service\\obj\\",
+      "outputPath": "F:\\dev\\frontend-service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9152,8 +9152,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj": {
-              "projectPath": "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj"
+            "F:\\dev\\filejob-service\\filejob-service.csproj": {
+              "projectPath": "F:\\dev\\filejob-service\\filejob-service.csproj"
             }
           }
         }

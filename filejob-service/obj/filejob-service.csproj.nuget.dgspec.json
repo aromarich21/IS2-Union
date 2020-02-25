@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj": {}
+    "F:\\dev\\filejob-service\\filejob-service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj": {
+    "F:\\dev\\filejob-service\\filejob-service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj",
+        "projectUniqueName": "F:\\dev\\filejob-service\\filejob-service.csproj",
         "projectName": "filejob-service",
-        "projectPath": "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\filejob-service.csproj",
+        "projectPath": "F:\\dev\\filejob-service\\filejob-service.csproj",
         "packagesPath": "C:\\Users\\aroma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\aroma\\Desktop\\application-is2\\filejob-service\\obj\\",
+        "outputPath": "F:\\dev\\filejob-service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
