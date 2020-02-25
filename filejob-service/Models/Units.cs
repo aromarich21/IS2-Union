@@ -12,7 +12,6 @@ namespace filejob_service.Models
             Elements = new List<Elements>();
             Links = new List<Links>();
         }
-
         public Units(Elements element, Links link)
         {
             Elements = new List<Elements>();
@@ -27,7 +26,7 @@ namespace filejob_service.Models
         }
         public Units(Units unit)
         {
-            Elements = unit.Elements;
+            Links = unit.Links;
             Links = unit.Links;
         }
         public void AddUnits(Elements element, Links link)

@@ -10,7 +10,7 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.4.6";
+        public string version = "0.4.7";
         static public List<SourceElements> sourceCurElements; //sources
         static public List<SourceLinks> sourceCurLinks;
         static public List<SourceElements> sourceIntElements;
@@ -18,12 +18,12 @@ namespace filejob_service
         static public List<SourceElements> sourceResElements;
         static public List<SourceLinks> sourceResLinks;
 
-        static public List<ClientData> clientData;
+        static public List<ClientData> sourceClientData;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            clientData = new List<ClientData>();
+            sourceClientData = new List<ClientData>();
             CreateSources();
             TestFunction();
         }
@@ -72,7 +72,9 @@ namespace filejob_service
             Links link = new Links("afe1", "afe2", "afe3", "test");
             Units sourceUnits= new Units(element,link);
             ClientData source1ClientData = new ClientData("test", sourceUnits, sourceUnits, sourceUnits);
-            clientData.Add(source1ClientData);
+            //sourceClientData.Add(source1ClientData);
+            ClientDataJob clientDataJobAdd = new ClientDataJob("token_test",sourceClientData);
+            clientDataJobAdd.AddElement(sourceClientData,"cur",element);
         }
     }
 }

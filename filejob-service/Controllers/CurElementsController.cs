@@ -11,48 +11,31 @@ namespace filejob_service.API.Controllers
     [ApiController]
     public class CurElementsController : ControllerBase
     {
+        public string _typeUnit = "cur";
+        public string _entity = "elements";
+
         [HttpGet]
         public string Get(string token)
         {
-            List<SourceElements> source_Elements = Startup.sourceCurElements;
-            foreach (SourceElements item in source_Elements)
+            if (token != null && token != "")
             {
-                if (item.Token == token)
-                {
-                    var elements = item.elements.AsEnumerable();
-                    string json = new JavaScriptSerializer().Serialize(elements);
-                    return json;
-                }
+                ClientDataJob jobGetCurUnitElements = new ClientDataJob(token, _typeUnit, _entity);
+                return jobGetCurUnitElements.Json;
             }
-            return "Not found";
-        }
+            return "Token undefined";
+        }  
 
         [HttpPost]
         public async Task<IActionResult> Post(string name, string id, string level, string number, string status, string type, string formalization, string token)
         {
-            var checkToken = false;
-            Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
             if (token != null && token != "")
             {
-                foreach (SourceElements item in Startup.sourceCurElements)
-                {
-                    if (item.Token == token)
-                    {
-                        item.elements.Add(inputElement);
-                        checkToken = true;
-                        return Ok();
-                    }
-                }
-                if (checkToken == false)
-                {
-                    SourceElements s_elements = new SourceElements();
-                    s_elements.elements.Add(inputElement);
-                    s_elements.Token = token;
-                    Startup.sourceCurElements.Add(s_elements);
-                    return Ok();
-                }
+                Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
+                ClientDataJob jobAddCurUnitElements = new ClientDataJob(token, Startup.sourceClientData);
+                jobAddCurUnitElements.AddElement(Startup.sourceClientData, _typeUnit, inputElement);
+                return Ok();
             }
-            return BadRequest();
+            return BadRequest();         
         }
 
         [HttpDelete]
