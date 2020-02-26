@@ -15,11 +15,11 @@ namespace filejob_service.Models
         {
             Token = token;         
         }
-        public Recoder(string token, string id, List<SourceElements> sourceCurElements, List<SourceLinks> sourceCurLinks,
-            List<SourceElements> sourceIntElements, List<SourceLinks> sourceIntLinks, List<SourceElements> sourceResElements, List<SourceLinks> sourceResLinks)
+        public Recoder(string token, string id, List<Elements> sourceCurElements, List<Links> sourceCurLinks,
+            List<Elements> sourceIntElements, List<Links> sourceIntLinks, List<Elements> sourceResElements, List<Links> sourceResLinks)
         {
             Token = token;
-            Integration(id, sourceCurElements, sourceCurLinks, sourceIntElements, sourceIntLinks, sourceResElements, sourceResLinks);
+            //Integration(id, sourceCurElements, sourceCurLinks, sourceIntElements, sourceIntLinks, sourceResElements, sourceResLinks);
         }
         
         public void AddElement(Elements inputElement,List<SourceElements> sourceElements)

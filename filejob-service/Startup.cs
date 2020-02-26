@@ -10,7 +10,7 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.4.7";
+        public string version = "0.4.8";
         static public List<SourceElements> sourceCurElements; //sources
         static public List<SourceLinks> sourceCurLinks;
         static public List<SourceElements> sourceIntElements;

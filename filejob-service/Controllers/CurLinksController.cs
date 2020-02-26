@@ -11,46 +11,29 @@ namespace filejob_service.Controllers
     [ApiController]
     public class CurLinksController : ControllerBase
     {
+        public string _typeUnit = "cur";
+        public string _entity = "links";
+
         [HttpGet]
         public string Get(string token)
         {
-            List<SourceLinks> source_Links = Startup.sourceCurLinks;
-            foreach (SourceLinks item in source_Links)
+            if (token != null && token != "")
             {
-                if (item.Token == token)
-                {
-                    var elements = item.links.AsEnumerable();
-                    string json = new JavaScriptSerializer().Serialize(elements);
-                    return json;
-                }
+                ClientDataJob jobGetUnitLinks = new ClientDataJob(token, _typeUnit, _entity);
+                return jobGetUnitLinks.Json;
             }
-            return "Not found";
+            return "Token undefined";
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(string afe1, string afe2, string afe3, string type, string token)
         {
-            var checkToken = false;
-            Links inputLink = new Links(afe1, afe2, afe3, type);
             if (token != null && token != "")
             {
-                foreach (SourceLinks item in Startup.sourceCurLinks)
-                {
-                    if (item.Token == token)
-                    {
-                        item.links.Add(inputLink);
-                        checkToken = true;
-                        return Ok();
-                    }
-                }
-                if (checkToken == false)
-                {
-                    SourceLinks s_links = new SourceLinks();
-                    s_links.links.Add(inputLink);
-                    s_links.Token = token;
-                    Startup.sourceCurLinks.Add(s_links);
-                    return Ok();
-                }
+                Links inputLink = new Links(afe1, afe2, afe3, type);
+                ClientDataJob jobAddUnitLinks = new ClientDataJob(token, Startup.sourceClientData);
+                jobAddUnitLinks.AddLink(Startup.sourceClientData, _typeUnit, inputLink);
+                return Ok();
             }
             return BadRequest();
         }
@@ -60,18 +43,11 @@ namespace filejob_service.Controllers
         {
             if (token != null && token != "")
             {
-                foreach (SourceLinks item in Startup.sourceCurLinks)
-                {
-                    if (item.Token == token)
-                    {
-                        item.links.Clear();
-                        return Ok();
-                    }
-                }
+                ClientDataJob jobDelete = new ClientDataJob(token, Startup.sourceClientData);
+                jobDelete.DeleteLinks(Startup.sourceClientData, _typeUnit);
                 return Ok();
             }
             return BadRequest();
         }
-
     }
 }

@@ -19,8 +19,8 @@ namespace filejob_service.API.Controllers
         {
             if (token != null && token != "")
             {
-                ClientDataJob jobGetCurUnitElements = new ClientDataJob(token, _typeUnit, _entity);
-                return jobGetCurUnitElements.Json;
+                ClientDataJob jobGetUnitElements = new ClientDataJob(token, _typeUnit, _entity);
+                return jobGetUnitElements.Json;
             }
             return "Token undefined";
         }  
@@ -31,8 +31,8 @@ namespace filejob_service.API.Controllers
             if (token != null && token != "")
             {
                 Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
-                ClientDataJob jobAddCurUnitElements = new ClientDataJob(token, Startup.sourceClientData);
-                jobAddCurUnitElements.AddElement(Startup.sourceClientData, _typeUnit, inputElement);
+                ClientDataJob jobAddUnitElements = new ClientDataJob(token, Startup.sourceClientData);
+                jobAddUnitElements.AddElement(Startup.sourceClientData, _typeUnit, inputElement);
                 return Ok();
             }
             return BadRequest();         
@@ -43,14 +43,8 @@ namespace filejob_service.API.Controllers
         {
             if (token != null && token != "")
             {
-                foreach (SourceElements item in Startup.sourceCurElements)
-                {
-                    if (item.Token == token)
-                    {
-                        item.elements.Clear();
-                        return Ok();
-                    }
-                }
+                ClientDataJob jobDelete = new ClientDataJob(token, Startup.sourceClientData);
+                jobDelete.DeleteElements(Startup.sourceClientData, _typeUnit);
                 return Ok();
             }
             return BadRequest();

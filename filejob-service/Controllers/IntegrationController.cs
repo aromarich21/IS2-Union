@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using filejob_service.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +16,11 @@ namespace filejob_service.Controllers
             {
                 try
                 {
+                    var _index = Int32.Parse(new ClientDataJob(token, Startup.sourceClientData).IndexClientData);
                     Recoder recoder = new Recoder
-                        (token, id, Startup.sourceCurElements, Startup.sourceCurLinks,
-                        Startup.sourceIntElements, Startup.sourceIntLinks, 
-                        Startup.sourceResElements, Startup.sourceResLinks);
+                        (token, id, Startup.sourceClientData[_index].Current.Elements, Startup.sourceClientData[_index].Current.Links,
+                        Startup.sourceClientData[_index].Integration.Elements, Startup.sourceClientData[_index].Integration.Links,
+                        Startup.sourceClientData[_index].Result.Elements, Startup.sourceClientData[_index].Result.Links);
                     return Ok();
                 }
                 catch

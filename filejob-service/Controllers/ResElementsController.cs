@@ -11,46 +11,29 @@ namespace filejob_service.Controllers
     [ApiController]
     public class ResElementsController : ControllerBase
     {
+        public string _typeUnit = "res";
+        public string _entity = "elements";
+
         [HttpGet]
         public string Get(string token)
         {
-            List<SourceElements> source_Elements = Startup.sourceResElements;
-            foreach (SourceElements item in source_Elements)
+            if (token != null && token != "")
             {
-                if (item.Token == token)
-                {
-                    var elements = item.elements.AsEnumerable();
-                    string json = new JavaScriptSerializer().Serialize(elements);
-                    return json;
-                }
+                ClientDataJob jobGetUnitElements = new ClientDataJob(token, _typeUnit, _entity);
+                return jobGetUnitElements.Json;
             }
-            return "Not found";
+            return "Token undefined";
         }
 
         [HttpPost]
         public async Task<IActionResult> Post(string name, string id, string level, string number, string status, string type, string formalization, string token)
         {
-            var checkToken = false;
-            Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
             if (token != null && token != "")
             {
-                foreach (SourceElements item in Startup.sourceResElements)
-                {
-                    if (item.Token == token)
-                    {
-                        item.elements.Add(inputElement);
-                        checkToken = true;
-                        return Ok();
-                    }
-                }
-                if (checkToken == false)
-                {
-                    SourceElements s_elements = new SourceElements();
-                    s_elements.elements.Add(inputElement);
-                    s_elements.Token = token;
-                    Startup.sourceResElements.Add(s_elements);
-                    return Ok();
-                }
+                Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
+                ClientDataJob jobAddUnitElements = new ClientDataJob(token, Startup.sourceClientData);
+                jobAddUnitElements.AddElement(Startup.sourceClientData, _typeUnit, inputElement);
+                return Ok();
             }
             return BadRequest();
         }
@@ -60,14 +43,8 @@ namespace filejob_service.Controllers
         {
             if (token != null && token != "")
             {
-                foreach (SourceElements item in Startup.sourceResElements)
-                {
-                    if (item.Token == token)
-                    {
-                        item.elements.Clear();
-                        return Ok();
-                    }
-                }
+                ClientDataJob jobDelete = new ClientDataJob(token, Startup.sourceClientData);
+                jobDelete.DeleteElements(Startup.sourceClientData, _typeUnit);
                 return Ok();
             }
             return BadRequest();

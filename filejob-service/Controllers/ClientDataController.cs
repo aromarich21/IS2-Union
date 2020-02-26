@@ -33,47 +33,18 @@ namespace filejob_service.Controllers
             return "Token undefined";
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Post(string name, string id, string level, string number, string status, string type, string formalization, string token)
+        [HttpDelete]
+        public async Task<IActionResult> Delete(string token, string type)
         {
-            var checkToken = false;
-            Elements inputElement = new Elements(name, id, level, number, status, type, formalization);
             if (token != null && token != "")
             {
-                foreach (SourceElements item in Startup.sourceCurElements)
+                if (type != null)
                 {
-                    if (item.Token == token)
-                    {
-                        item.elements.Add(inputElement);
-                        return Ok();
-                    }
-                }
-                if (checkToken == false)
-                {
-                    SourceElements s_elements = new SourceElements();
-                    s_elements.elements.Add(inputElement);
-                    s_elements.Token = token;
-                    Startup.sourceCurElements.Add(s_elements);
+                    ClientDataJob clientDataJobDelete = new ClientDataJob(token, Startup.sourceClientData);
+                    clientDataJobDelete.DeleteElements(Startup.sourceClientData, type);
+                    clientDataJobDelete.DeleteLinks(Startup.sourceClientData, type);
                     return Ok();
                 }
-            }
-            return BadRequest();
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete(string token)
-        {
-            if (token != null && token != "")
-            {
-                foreach (SourceElements item in Startup.sourceCurElements)
-                {
-                    if (item.Token == token)
-                    {
-                        item.elements.Clear();
-                        return Ok();
-                    }
-                }
-                return Ok();
             }
             return BadRequest();
         }

@@ -277,5 +277,52 @@ namespace filejob_service.Models
                 IndexClientData = (sourceClientData.Count - 1).ToString();
             }
         }
+        public void DeleteLinks(List<ClientData> sourceClientData, string typeUnit)
+        {
+            try
+            {
+                if (IndexClientData != "null" && IndexClientData != null)
+                {
+                    if (typeUnit == Types[0])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Current.Links.Clear();
+                    }
+                    if (typeUnit == Types[1])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Integration.Links.Clear();
+                    }
+                    if (typeUnit == Types[2])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Result.Links.Clear();
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+        public void DeleteElements(List<ClientData> sourceClientData, string typeUnit)
+        {
+            try 
+            {
+                if (IndexClientData != "null" && IndexClientData != null)
+                {
+                    if (typeUnit == Types[0])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Current.Elements.Clear();
+                    }
+                    if (typeUnit == Types[1])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Integration.Elements.Clear();
+                    }
+                    if (typeUnit == Types[2])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Result.Elements.Clear();
+                    }
+                }
+            }
+            catch { }        
+        }
     }
 }
