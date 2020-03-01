@@ -12,13 +12,16 @@ namespace filejob_service.Models
         public string IndexClientData { get; set; }
         public string Json { get; set; }
         public readonly string _token;
-     
+
+        public ClientDataJob()
+        {
+            DefaultFunction();    
+        }
         public ClientDataJob(string token)
         {
             _token = token;
             DefaultFunction();
-            Json = GetData(_token, "null", "null");
-            
+            Json = GetData(_token, "null", "null");        
         }
         public ClientDataJob(string token, List<ClientData> sourceClientData)
         {

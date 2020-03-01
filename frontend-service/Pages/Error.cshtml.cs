@@ -11,16 +11,12 @@ namespace frontend_service.Pages
         public string RequestId { get; set; }
         static public string ErrorMessage { get; set; }
         static public string DefaultMessage = "Упс, произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
-
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
         private readonly ILogger<ErrorModel> _logger;
-
         public ErrorModel(ILogger<ErrorModel> logger)
         {
             _logger = logger;
         }
-
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;

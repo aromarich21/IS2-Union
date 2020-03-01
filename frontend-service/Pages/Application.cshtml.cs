@@ -1,42 +1,37 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Xml.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Xml.Linq;
-using System.Collections.Generic;
-using filejob_service.Models;
-using System.Net;
-using Newtonsoft.Json;
 using frontend_service.Pages;
-using RestSharp;
-using Microsoft.Ajax.Utilities;
-using System;
-using Amazon.CloudFront.Model;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Amazon.SimpleEmail.Model;
+using frontend_service.Models;
+using filejob_service.Models;
+using Microsoft.Extensions.Logging;
 
 namespace frontend_service
 {
     public class ApplicationModel : PageModel
     {
         private IHostingEnvironment _environment;
+        private readonly ILogger<ApplicationModel> _logger;
+        public FileJobServiceReq filejobPage1;
         [BindProperty]
         public IFormFile Upload { get; set; } //form fileinput current diagramm
         [BindProperty]
         public IFormFile Upload2 { get; set; } // form fileinput integr diagramm
-        public string auth_; //авторизация
-        public int settingsTimeSecondsCookies = 1;  ///  cookies_config. время куки
         public bool goodSchemaFile = false; // метка проверки схемы XML
-        static public string url_filejobservice_api = "https://localhost:44337/api/filejob-service/"; //url dev default
-        static public string token_; //token
+        //static public string url_filejobservice_api = "https://localhost:44337/api/filejob-service/"; //url dev default
+        static public string _token; //token
         public string currentType = "cur"; //typeDiagramm
         public string intType = "int"; //typeDiagramm
 
         ///// body
+        public ApplicationModel(ILogger<ApplicationModel> logger)
+        {
+            _logger = logger;
+        }
         public void OnGet() //loaded page
         {
             DefaultFunction();
@@ -47,6 +42,7 @@ namespace frontend_service
         }
         public async Task OnPostAsync() //onclick submit
         {
+            DefaultFunction();
             try
             {
                 UploadToFileJobService();
@@ -58,25 +54,23 @@ namespace frontend_service
             {
                 ErrorModel.ErrorMessage = "Ошибка загрузки";
                 Response.Redirect("/Error");
-            }      
+            }
         }
-        
         //////// functions
         public void DefaultFunction() //clear error_message + init host of filejob-service + use tokenjob
         {
             @ErrorModel.ErrorMessage = "";
-            if (Properties.Resources.prod == "true")
-                url_filejobservice_api = Properties.Resources.host_filejob_service + "/api/filejob-service/";
             JobToken();
+            filejobPage1 = new FileJobServiceReq(_token);
         }
         public void JobToken() //job with token
         {
-            token_ = Request.Cookies["token_"];
-            if (token_ == null || token_ == "null" || token_ == "")
+            _token = Request.Cookies["token_"];
+            if (_token == null || _token == "null" || _token == "")
             {
-                token_ = Guid.NewGuid().ToString();  //UUID generate
+                _token = Guid.NewGuid().ToString();  //UUID generate
                 //token_ = TokenGenerate(5); //token value generate
-                Response.Cookies.Append("token_", token_);   //cookie add [token_]
+                Response.Cookies.Append("token_", _token);   //cookie add [token_]
             }
         }
         private string TokenGenerate(int size) //finc 4 token value generate
@@ -95,21 +89,21 @@ namespace frontend_service
                 token += Convert.ToBase64String(Guid.NewGuid().ToByteArray());
             }
             return token;
-        } 
+        }
         public void UploadToFileJobService() // func 4 process send date to filejob-service
         {
             try
             {
                 try
                 {
-                    ClearElements(currentType);
-                    ClearLinks(currentType);
+                    filejobPage1.ClearElements(currentType);
+                    filejobPage1.ClearLinks(currentType);
                     ParseFileIs2(Upload, currentType);
 
                     try
                     {
-                        ClearElements(intType);
-                        ClearLinks(intType);
+                        filejobPage1.ClearElements(intType);
+                        filejobPage1.ClearLinks(intType);
                         ParseFileIs2(Upload2, intType);
                     }
                     catch
@@ -129,7 +123,7 @@ namespace frontend_service
                 ErrorModel.ErrorMessage = "Ошибка соединения с сервисом filejob_service";
                 Response.Redirect("/Error");
             }
-        } 
+        }
         public void ParseFileIs2(IFormFile form, string typeDiagramm) //parse file .is2 
         {
             try
@@ -159,7 +153,7 @@ namespace frontend_service
                             d_elements[i] = new Elements(nameAttribute.Value, idAttribute.Value, levelAttribute.Value, numberAttribute.Value, statusAttribute.Value, typeAttribute.Value, formalizationAttribute.Value);
                             try
                             {
-                                AddElement(d_elements[i], typeDiagramm);
+                                filejobPage1.AddElement(d_elements[i], typeDiagramm);
                             }
                             catch
                             {
@@ -191,7 +185,7 @@ namespace frontend_service
                             d_links[i] = new Links(afe1Attribute.Value, afe2Attribute.Value, afe3Attribute.Value, typeLinkAttribute.Value);
                             try
                             {
-                                AddLink(d_links[i], typeDiagramm);
+                                filejobPage1.AddLink(d_links[i], typeDiagramm);
                             }
                             catch
                             {
@@ -211,52 +205,5 @@ namespace frontend_service
                 Response.Redirect("/Error");
             }
         }
-        public WebResponse AddElement(Elements element, string typeDiagramm) //post element to fj-service
-        {
-            var controller_name = typeDiagramm + "elements";
-            var postedData = "name=" + element.Name + "&" + "id=" + element.Id + "&" + "level=" + element.Level + "&" + "number=" + element.Number + "&" + "status=" + element.Status + "&" + "type=" + element.Type + "&" + "formalization=" + element.Formalization + "&" + "token=" + token_;
-            var postUrl = url_filejobservice_api + controller_name + "/?" + postedData;
-            WebRequest reqPOST = WebRequest.Create(postUrl);
-            reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
-            reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
-            reqPOST.ContentType = "application/x-www-form-urlencoded"; // указываем тип контента
-            Stream sendStream = reqPOST.GetRequestStream();
-            sendStream.Close();
-            WebResponse result = reqPOST.GetResponse();
-            return result;
-        } 
-        public WebResponse AddLink(Links link, string typeDiagramm) //post req link to fj-service
-        {
-            var controller_name = typeDiagramm + "links";
-            var postedData = "afe1=" + link.Afe1 + "&" + "afe2=" + link.Afe2 + "&" + "afe3=" + link.Afe3 + "&" + "type=" + link.Type + "&" + "token=" + token_;
-            var postUrl = url_filejobservice_api + controller_name + "/?" + postedData;
-            WebRequest reqPOST = System.Net.WebRequest.Create(postUrl);
-            reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
-            reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
-            reqPOST.ContentType = "application/x-www-form-urlencoded"; // указываем тип контента
-            Stream sendStream = reqPOST.GetRequestStream();
-            sendStream.Close();
-            WebResponse result = reqPOST.GetResponse();
-            return result;
-        }
-        public WebResponse ClearElements(string typeDiagramm) //delete req all elements to fj-service
-        {
-            var controller_name = typeDiagramm + "elements";
-            var delUrl = url_filejobservice_api + controller_name + "?token=" + token_;
-            WebRequest request = WebRequest.Create(delUrl);
-            request.Method = "DELETE";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            return response;
-        }
-        public WebResponse ClearLinks(string typeDiagramm) //delete req all links to fj-service
-        {
-            var controller_name = typeDiagramm + "links";
-            var delUrl = url_filejobservice_api + controller_name + "?token=" + token_;
-            WebRequest request = WebRequest.Create(delUrl);
-            request.Method = "DELETE";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            return response;
-        }
-
     }
-} 
+}

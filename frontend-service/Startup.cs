@@ -10,14 +10,14 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.4.0";
-        static public string versionShow = "v" + version + " beta";
-        static public List<ClientData> clientData;
+        static public string version = "0.5.0";
+        static public string versionShow = "v" + version + " alpha";
+        static public List<ClientDataFront> clientData;
        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            clientData = new List<ClientData>();
+            clientData = new List<ClientDataFront>();
         }
 
         public IConfiguration Configuration { get; }

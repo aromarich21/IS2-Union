@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\filejob-service",
+    "\\filejob-service\\Controllers"
   ],
+  "SelectedNode": "\\application-is2.sln",
   "PreviewInSolutionExplorer": false
 }
