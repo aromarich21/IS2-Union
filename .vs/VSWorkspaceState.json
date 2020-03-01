@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\filejob-service",
+    "\\filejob-service\\Controllers"
   ],
+  "SelectedNode": "\\filejob-service\\Controllers\\ClientDataController.cs",
   "PreviewInSolutionExplorer": false
 }

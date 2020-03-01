@@ -16,11 +16,7 @@ namespace filejob_service.Controllers
             {
                 try
                 {
-                    var _index = Int32.Parse(new ClientDataJob(token, Startup.sourceClientData).IndexClientData);
-                    Recoder recoder = new Recoder
-                        (token, id, Startup.sourceClientData[_index].Current.Elements, Startup.sourceClientData[_index].Current.Links,
-                        Startup.sourceClientData[_index].Integration.Elements, Startup.sourceClientData[_index].Integration.Links,
-                        Startup.sourceClientData[_index].Result.Elements, Startup.sourceClientData[_index].Result.Links);
+                    Recoder recoder = new Recoder(token, Startup.sourceClientData, id);
                     return Ok();
                 }
                 catch
@@ -37,7 +33,7 @@ namespace filejob_service.Controllers
             if (token != null && token != "")
             {
                 Recoder recoder = new Recoder(token);
-                recoder.RefreshRecoder(Startup.sourceResElements, Startup.sourceResLinks);
+                recoder.RefreshRecoder(Startup.sourceClientData);
                 return Ok("Done");
             }
             return BadRequest();

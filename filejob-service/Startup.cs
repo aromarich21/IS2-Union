@@ -10,22 +10,13 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.4.8";
-        static public List<SourceElements> sourceCurElements; //sources
-        static public List<SourceLinks> sourceCurLinks;
-        static public List<SourceElements> sourceIntElements;
-        static public List<SourceLinks> sourceIntLinks;
-        static public List<SourceElements> sourceResElements;
-        static public List<SourceLinks> sourceResLinks;
-
+        public string version = "0.5.0";
         static public List<ClientData> sourceClientData;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             sourceClientData = new List<ClientData>();
-            CreateSources();
-            TestFunction();
         }
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
@@ -55,17 +46,6 @@ namespace filejob_service
                    pattern: "{controller}/{action=Index}/{function?}/{attribute?}/{id?}");
             });
         }
-
-        public void CreateSources()
-        {
-            sourceCurElements = new List<SourceElements>();
-            sourceCurLinks = new List<SourceLinks>();
-            sourceIntElements = new List<SourceElements>();
-            sourceIntLinks = new List<SourceLinks>();
-            sourceResElements = new List<SourceElements>();
-            sourceResLinks = new List<SourceLinks>();
-        }
-
         public void TestFunction()
         {
             Elements element = new Elements("test","1","level", "number", "status", " type", "formalization");
