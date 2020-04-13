@@ -286,3 +286,4 @@ F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.Views.pdb
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.csproj.CopyComplete
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.dll
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.pdb
+F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\ApplicationResult.cshtml.g.cs

@@ -28,17 +28,14 @@ namespace frontend_service
         public string intType = "int"; //typeDiagramm
 
         ///// body
-        public ApplicationModel(ILogger<ApplicationModel> logger)
-        {
-            _logger = logger;
-        }
         public void OnGet() //loaded page
         {
             DefaultFunction();
         }
-        public ApplicationModel(IHostingEnvironment environment)
+        public ApplicationModel(IHostingEnvironment environment, ILogger<ApplicationModel> logger)
         {
             _environment = environment;
+            _logger = logger;
         }
         public async Task OnPostAsync() //onclick submit
         {

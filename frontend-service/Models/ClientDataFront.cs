@@ -8,12 +8,9 @@ namespace frontend_service.Models
     {
         public SelectList Options { get; set; }
         public SelectList ElementsDropdown { get; set; }
-        //public List<Elements> SourceCurElements { get; set; }
         public ClientData clientData { get; set; }
 
-        public ClientDataFront()
-        {
-        }
+        public ClientDataFront() {}
 
         public ClientDataFront(string token)
         {
