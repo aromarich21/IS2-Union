@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 
 namespace filejob_service.Models
 {
@@ -13,6 +13,7 @@ namespace filejob_service.Models
         public string Formalization { get; set; }
         public string Symbol { get; set; }
         public string Mark { get; set; }
+        public string ParentId { get; set; }
 
         public Elements()
         {
@@ -31,6 +32,17 @@ namespace filejob_service.Models
             Formalization = formalization;
             Symbol = "122";
             Mark = "";
+        }
+
+        public void AddParentId(List<Links> linksList)
+        {
+            foreach (Links item in linksList)
+            {
+                if (item.Afe2 == Id && item.Type == "2")
+                {
+                    ParentId = item.Afe1;
+                }
+            }
         }
     }
 }

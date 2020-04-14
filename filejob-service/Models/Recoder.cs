@@ -40,13 +40,16 @@ namespace filejob_service.Models
         {
             foreach (Elements item in sourceClientData[_index].Current.Elements)
             {
-                sourceClientData[_index].Result.Elements.Add(item);
+                item.AddParentId(sourceClientData[_index].Current.Links);
+                sourceClientData[_index].Result.Elements.Add(item); //переделать через джоб
             }
             foreach (Links item in sourceClientData[_index].Current.Links)
             {
-                sourceClientData[_index].Result.Links.Add(item);
+                sourceClientData[_index].Result.Links.Add(item); //переделать через джоб
             }
+            
         }
+
        public string FindIndexElement(string id, List<ClientData> sourceClientData)
         {
             var count = 0;
@@ -86,6 +89,7 @@ namespace filejob_service.Models
                 sourceClientData[_index].Integration.Elements[0].Id = sourceClientData[_index].Result.Elements[indexElement].Id;
                 sourceClientData[_index].Integration.Elements[0].Level = sourceClientData[_index].Result.Elements[indexElement].Level;
                 sourceClientData[_index].Integration.Elements[0].Number = sourceClientData[_index].Result.Elements[indexElement].Number;
+                sourceClientData[_index].Integration.Elements[0].ParentId = sourceClientData[_index].Result.Elements[indexElement].ParentId;
                 sourceClientData[_index].Result.Elements[indexElement] = sourceClientData[_index].Integration.Elements[0];
                 var count = 0;
                 foreach (Elements item in sourceClientData[_index].Integration.Elements)

@@ -4,6 +4,6 @@
     "\\filejob-service",
     "\\filejob-service\\Controllers"
   ],
-  "SelectedNode": "\\application-is2.sln",
+  "SelectedNode": "\\filejob-service\\Controllers\\IntegrationController.cs",
   "PreviewInSolutionExplorer": false
 }
