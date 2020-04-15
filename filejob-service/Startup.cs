@@ -12,7 +12,7 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.6.1";
+        public string version = "0.6.2";
         static public List<ClientData> sourceClientData;
         public static void ClearClientData()
         {

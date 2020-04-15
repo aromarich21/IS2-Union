@@ -7,10 +7,10 @@ namespace filejob_service.Models
     {
         public string Token { get; set; }
         public string Url { get; set; }
+        public ClientDataJob Job { get; set; }
         public int IndexSourceCurElements { get; set; }
         public int LastIndexCurElement { get; set; }
         public int LastIndexIntElement { get; set; }
-        public ClientDataJob Job { get; set; }
         public int _index;
 
         public Recoder() {}
@@ -30,12 +30,21 @@ namespace filejob_service.Models
             Job = new ClientDataJob(token, sourceClientData);
             _index = Int32.Parse(Job.IndexClientData);
             Integration(sourceClientData, id);
-        }      
+        }
+
+        public void Integration(List<ClientData> sourceClientData, string id)
+        {
+            RefreshRecoder(sourceClientData);
+            FillDiagramm(sourceClientData);
+            ConnectDiagramm(sourceClientData, id);
+        }
+
         public void RefreshRecoder(List<ClientData> sourceClientData)
         {
             Job.DeleteElements(sourceClientData, Job.Types[2]);
             Job.DeleteLinks(sourceClientData, Job.Types[2]);
         }
+
         public void FillDiagramm(List<ClientData> sourceClientData) //fill resdiagramm with elements&links of currentdiagramm
         {
             foreach (Elements item in sourceClientData[_index].Current.Elements)
@@ -48,9 +57,14 @@ namespace filejob_service.Models
                 sourceClientData[_index].Result.Links.Add(item); //переделать через джоб
             }
             
+            foreach (Elements item in sourceClientData[_index].Current.Elements)
+            {
+                SubjectElements subjects = new SubjectElements(item.Id, sourceClientData[_index].Current.Elements);
+                item.Subjects = subjects;
+            }
         }
 
-       public string FindIndexElement(string id, List<ClientData> sourceClientData)
+        public string FindIndexElement(string id, List<ClientData> sourceClientData)
         {
             var count = 0;
             foreach (Elements item in sourceClientData[_index].Result.Elements)
@@ -63,10 +77,12 @@ namespace filejob_service.Models
             }
             return "null";           
         }
+
         public void ConnectDiagramm(List<ClientData> sourceClientData, string id)
         {
             var indexElement = Int32.Parse(FindIndexElement(id, sourceClientData));
-            
+            var count = 0;
+
             if (sourceClientData[_index].Result.Elements[indexElement].Level == "1" && sourceClientData[_index].Result.Elements[indexElement].Number == "1")
             {
                 Job.DeleteElements(sourceClientData, Job.Types[2]);
@@ -77,6 +93,7 @@ namespace filejob_service.Models
             else
             {
                 List<Links> resLinks = new List<Links>();
+
                 foreach (Links item in sourceClientData[_index].Integration.Links)
                 {
                     resLinks.Add(item);
@@ -90,8 +107,7 @@ namespace filejob_service.Models
                 sourceClientData[_index].Integration.Elements[0].Level = sourceClientData[_index].Result.Elements[indexElement].Level;
                 sourceClientData[_index].Integration.Elements[0].Number = sourceClientData[_index].Result.Elements[indexElement].Number;
                 sourceClientData[_index].Integration.Elements[0].ParentId = sourceClientData[_index].Result.Elements[indexElement].ParentId;
-                sourceClientData[_index].Result.Elements[indexElement] = sourceClientData[_index].Integration.Elements[0];
-                var count = 0;
+                sourceClientData[_index].Result.Elements[indexElement] = sourceClientData[_index].Integration.Elements[0];        
                 foreach (Elements item in sourceClientData[_index].Integration.Elements)
                 {
                     if (count > 0)
@@ -123,12 +139,12 @@ namespace filejob_service.Models
                 }
             }    
         }
-        
-        public void Integration(List<ClientData> sourceClientData, string id) 
+
+        public void Recode(List<ClientData> sourceClientData, string id)
         {
-            RefreshRecoder(sourceClientData);
-            FillDiagramm(sourceClientData);
-            ConnectDiagramm(sourceClientData, id);          
+            SubjectElements leftElement = new SubjectElements((Int32.Parse(id)-1).ToString(), sourceClientData, _index, "left");
+            
+
         }
     }
 }

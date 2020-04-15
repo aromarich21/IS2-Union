@@ -28,7 +28,15 @@ namespace frontend_service
         {
             UserChoice = Request.Form["elementsId"];
             DefaultFunction();
-            filejobPage2.Integration(UserChoice);
+            try
+            { 
+                filejobPage2.Integration(UserChoice);
+            }
+            catch
+            {
+                ErrorModel.ErrorMessage = "чот не так с запросом интеграции";
+                Response.Redirect("/Error");
+            }
         }
         public ApplicationStep2Model(ILogger<ApplicationStep2Model> logger)
         {
