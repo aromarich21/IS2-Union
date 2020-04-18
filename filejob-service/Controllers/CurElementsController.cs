@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using filejob_service.Models;
 using Microsoft.AspNetCore.Mvc;
-using filejob_service.Models;
-using System.Linq;
 using System.Threading.Tasks;
-using Nancy.Json;
 
 namespace filejob_service.API.Controllers
 {

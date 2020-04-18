@@ -18,6 +18,7 @@ namespace filejob_service.Models
             Result = new Units();
             CreateDate = DateTime.Now;
         }
+
         public ClientData(string token, Units curUnit, Units intUnit, Units resUnit)
         {
             Token = token;

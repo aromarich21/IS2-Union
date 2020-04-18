@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using filejob_service.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,5 +38,4 @@ namespace filejob_service.Controllers
             return BadRequest();
         }
     }
-
 }

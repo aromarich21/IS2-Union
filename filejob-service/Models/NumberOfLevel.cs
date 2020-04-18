@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace filejob_service.Models
 {

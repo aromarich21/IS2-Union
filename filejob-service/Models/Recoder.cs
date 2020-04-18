@@ -142,7 +142,7 @@ namespace filejob_service.Models
 
         public void Recode(List<ClientData> sourceClientData, string id)
         {
-            SubjectElements leftElement = new SubjectElements((Int32.Parse(id)-1).ToString(), sourceClientData, _index, "left");
+            //SubjectElements leftElement = new SubjectElements((Int32.Parse(id)-1).ToString(), sourceClientData, _index, "left");
             
 
         }

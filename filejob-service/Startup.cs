@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading;
 using filejob_service.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,16 +10,9 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.6.2";
+        public string version = "0.6.3";
         static public List<ClientData> sourceClientData;
-        public static void ClearClientData()
-        {
-            var count = 0;
-            foreach (ClientData item in sourceClientData)
-            {
-                sourceClientData.Remove(item);
-            }
-        }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -54,16 +45,6 @@ namespace filejob_service
                    name: "default",
                    pattern: "{controller}/{action=Index}/{function?}/{attribute?}/{id?}");
             });
-        }
-        public void TestFunction()
-        {
-            Elements element = new Elements("test","1","level", "number", "status", " type", "formalization");
-            Links link = new Links("afe1", "afe2", "afe3", "test");
-            Units sourceUnits= new Units(element,link);
-            ClientData source1ClientData = new ClientData("test", sourceUnits, sourceUnits, sourceUnits);
-            //sourceClientData.Add(source1ClientData);
-            ClientDataJob clientDataJobAdd = new ClientDataJob("token_test",sourceClientData);
-            clientDataJobAdd.AddElement(sourceClientData,"cur",element);
         }
     }
 }

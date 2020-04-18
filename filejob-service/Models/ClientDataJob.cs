@@ -327,5 +327,15 @@ namespace filejob_service.Models
             }
             catch { }        
         }
+        /*
+        public static void ClearClientData()
+        {
+            var count = 0;
+            foreach (ClientData item in sourceClientData)
+            {
+                sourceClientData.Remove(item);
+            }
+        }
+        */
     }
 }
