@@ -9,6 +9,7 @@ namespace filejob_service.Models
         public Units Result { get; set; }
         public string Token { get; set; }
         public DateTime CreateDate { get; set; }
+        public Recoder ClientRecoder { get; set; }
 
         public ClientData(string token)
         {

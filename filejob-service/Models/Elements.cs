@@ -14,7 +14,7 @@ namespace filejob_service.Models
         public string Symbol { get; set; }
         public string Mark { get; set; }
         public string ParentId { get; set; }
-        public SubjectElements Subjects { get; set; }
+        //public SubjectElements Subjects { get; set; }
 
         public Elements()
         {

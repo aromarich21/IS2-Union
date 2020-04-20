@@ -10,7 +10,7 @@ namespace filejob_service
 {
     public class Startup
     {
-        public string version = "0.6.3";
+        public string version = "0.6.4";
         static public List<ClientData> sourceClientData;
 
         public Startup(IConfiguration configuration)

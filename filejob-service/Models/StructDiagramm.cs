@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace filejob_service.Models
 {
-    public class DiagrammInfo
+    public class StructDiagramm
     {
 
         public string Level { get; set; }
@@ -11,9 +11,9 @@ namespace filejob_service.Models
         public int FirstNumber { get; set; }
         public int LastNumber { get; set; }
 
-        public DiagrammInfo() {}
+        public StructDiagramm() {}
 
-        public DiagrammInfo(string level)
+        public StructDiagramm(string level)
         {
             Level = level;
             Numbers = new List<string>();
@@ -21,7 +21,7 @@ namespace filejob_service.Models
             LastNumber = 0;
         }
 
-        public DiagrammInfo(string level,string number)
+        public StructDiagramm(string level,string number)
         {
             Level = level;
             Numbers = new List<string>();
