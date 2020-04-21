@@ -16,11 +16,6 @@ namespace filejob_service.Controllers
                 try
                 {
                     
-                    if (Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].Result.Elements.Count != 0)
-                    {
-                        Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].Result.Elements.Clear();
-                        Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].Result.Links.Clear();
-                    }
                     Recoder recoder = new Recoder(token, Startup.sourceClientData, id);
                     return Ok();
                 }

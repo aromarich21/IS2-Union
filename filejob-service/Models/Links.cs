@@ -1,6 +1,4 @@
-﻿
-
-namespace filejob_service.Models
+﻿namespace filejob_service.Models
 {
     public class Links
     {
@@ -16,6 +14,13 @@ namespace filejob_service.Models
             Afe2 = afe2;
             Afe3 = afe3;
             Type = type;
+        }
+        public Links(Links link)
+        {
+            Afe1 = link.Afe1;
+            Afe2 = link.Afe2;
+            Afe3 = link.Afe3;
+            Type = link.Type;
         }
     }
 }

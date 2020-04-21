@@ -14,6 +14,7 @@ namespace filejob_service.Models
         public string Symbol { get; set; }
         public string Mark { get; set; }
         public string ParentId { get; set; }
+        public string OldId { get; set; }
         //public SubjectElements Subjects { get; set; }
 
         public Elements()
@@ -33,6 +34,21 @@ namespace filejob_service.Models
             Formalization = formalization;
             Symbol = "122";
             Mark = "";
+            OldId = Id;
+        }
+
+        public Elements(Elements element)
+        {
+            Name = element.Name;
+            Id = element.Id;
+            Level = element.Level;
+            Number = element.Number;
+            Status = element.Status;
+            Type = element.Type;
+            Formalization = element.Formalization;
+            Symbol = "122";
+            Mark = "";
+            OldId = Id;
         }
 
         public void AddParentId(List<Links> linksList)

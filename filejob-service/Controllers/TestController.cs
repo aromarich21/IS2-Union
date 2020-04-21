@@ -18,7 +18,7 @@ namespace filejob_service.Controllers
         {
             try
             {
-                var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].ClientRecoder.RecoderInfo);
+                var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].Current.Elements);
                 return jsonElements;
             }
             catch 
