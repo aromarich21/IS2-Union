@@ -85,8 +85,6 @@ namespace filejob_service.Models
             {
                 Job.DeleteElements(sourceClientData, Job.Types[2]);
                 Job.DeleteLinks(sourceClientData, Job.Types[2]);
-                //sourceClientData[_index].Result.Elements.Clear();
-                //sourceClientData[_index].Result.Links.Clear();
                 sourceClientData[_index].Result.Elements = sourceClientData[_index].Integration.Elements;
                 sourceClientData[_index].Result.Links = sourceClientData[_index].Integration.Links;
             }
@@ -94,17 +92,11 @@ namespace filejob_service.Models
             {
                 sourceClientData[_index].Result.Elements[indexElement].Name = sourceClientData[_index].Integration.Elements[0].Name;
                 sourceClientData[_index].Result.Elements[indexElement].OldId = sourceClientData[_index].Integration.Elements[0].Id;
-                //sourceClientData[_index].Result.Elements[indexElement].Name = "hdshjdfshjdsfhjdfshjfdshjdsfjkhl";
                 List<Elements> sourceMigrationElements = new List<Elements>();
                 List<Links> sourceMigrationLinks = new List<Links>();
                 var diff = Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Level) - 1;
                 var indexMigrationElement = 0;
                 var lastIdElements = 0;
-                foreach (Links item in sourceClientData[_index].Integration.Links)
-                {
-                    Links link = new Links(item);
-                    sourceMigrationLinks.Add(link);
-                }
                 foreach (Elements item in sourceClientData[_index].Result.Elements)
                 {
                     if (Int32.Parse(item.Id) > lastIdElements)
@@ -116,124 +108,40 @@ namespace filejob_service.Models
                     if (count > 0)
                     {
                         Elements element = new Elements(item);
-                        //element.Level = (Int32.Parse(element.Level) + diff).ToString();
-                        //element.Id = (++lastIdElements).ToString();
-                        //element.ParentId = element.OldId;
+                        element.Level = (Int32.Parse(element.Level) + diff).ToString();
+                        element.Id = (++lastIdElements).ToString();
                         sourceMigrationElements.Add(element);
-                        sourceMigrationElements[indexMigrationElement].Level = (Int32.Parse(sourceMigrationElements[indexMigrationElement].Level) + diff).ToString();
-                        sourceMigrationElements[indexMigrationElement].Id = (++lastIdElements).ToString();
-                        //sourceMigrationElements[indexMigrationElement].ParentId = item.Id;
                         indexMigrationElement++;
                     }
                     count++;
                 }
-                diff = Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Id) - Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].OldId);
                 foreach (Elements item in sourceMigrationElements)
                 {
-                    //Elements element = new Elements(item);
-                    //sourceClientData[_index].Result.Elements.Add(element);
-                    Job.AddElement(sourceClientData, Job.Types[2], item);
-                    foreach (Links link in sourceMigrationLinks)
-                    {
-                        if (link.Afe1 == item.OldId)
-                            //link.Afe1 = item.Id;
-                            link.Afe1 = (Int32.Parse(link.Afe1) + diff).ToString();
-                        if (link.Afe2 == item.OldId)
-                            link.Afe2 = (Int32.Parse(link.Afe2) + diff).ToString();
-                        if (link.Afe3 == item.OldId)
-                            link.Afe3 = (Int32.Parse(link.Afe3) + diff).ToString();
-                        if (link.Afe1 == sourceClientData[_index].Result.Elements[indexElement].OldId)
-                            link.Afe1 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                        if (link.Afe2 == sourceClientData[_index].Result.Elements[indexElement].OldId)
-                            link.Afe2 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                        if (link.Afe3 == sourceClientData[_index].Result.Elements[indexElement].OldId)
-                            link.Afe3 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                    }
+                    Job.AddElement(sourceClientData, Job.Types[2], item);                   
                 }
-                foreach (Links link in sourceMigrationLinks)
-                {
-                    sourceClientData[_index].Result.Links.Add(link);
-                    //Job.AddLink(sourceClientData, Job.Types[2], link);
-                }
-            }
-        }
-        /*
-        public void ConnectDiagramm(List<ClientData> sourceClientData, string id)
-        {
-            var indexElement = Int32.Parse(FindIndexElement(id, sourceClientData));
-            var count = 0;
-
-            if (sourceClientData[_index].Result.Elements[indexElement].Level == "1" && sourceClientData[_index].Result.Elements[indexElement].Number == "1")
-            {
-                Job.DeleteElements(sourceClientData, Job.Types[2]);
-                Job.DeleteLinks(sourceClientData, Job.Types[2]);
-                sourceClientData[_index].Result.Elements = sourceClientData[_index].Integration.Elements;
-                sourceClientData[_index].Result.Links = sourceClientData[_index].Integration.Links;
-            }
-            else
-            {
-                List<Links> resLinks = new List<Links>();
-
                 foreach (Links item in sourceClientData[_index].Integration.Links)
                 {
-                    resLinks.Add(item);
-                }
-                LastIndexCurElement = 1;
-                foreach (Elements item in sourceClientData[_index].Current.Elements)
-                {
-                    LastIndexCurElement++;
-                }
-                sourceClientData[_index].Integration.Elements[0].Id = sourceClientData[_index].Result.Elements[indexElement].Id;
-                sourceClientData[_index].Integration.Elements[0].Level = sourceClientData[_index].Result.Elements[indexElement].Level;
-                sourceClientData[_index].Integration.Elements[0].Number = sourceClientData[_index].Result.Elements[indexElement].Number;
-                sourceClientData[_index].Integration.Elements[0].ParentId = sourceClientData[_index].Result.Elements[indexElement].ParentId;
-                sourceClientData[_index].Result.Elements[indexElement] = sourceClientData[_index].Integration.Elements[0];
-                Recode(sourceClientData[_index], id);
-                foreach (Elements item in sourceClientData[_index].Integration.Elements)
-                {
-                    if (count > 0)
-                    {   
-                        foreach (Links link in resLinks)
-                        {
-                            if (link.Afe1 == item.Id)
-                                link.Afe1 = LastIndexCurElement.ToString();
-                            if (link.Afe2 == item.Id)
-                                link.Afe2 = LastIndexCurElement.ToString();
-                            if (link.Afe3 == item.Id)
-                                link.Afe3 = LastIndexCurElement.ToString();
-                        }
-                        item.Id = LastIndexCurElement.ToString();
-                        Job.AddElement(sourceClientData, Job.Types[2], item);
-                        LastIndexCurElement++;
+                    Links link = new Links(item);
+                    
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id) != null)
+                    {    
+                        link.Afe1 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id).Id;
                     }
-                    count++;
-                }
-                foreach (Links item in resLinks)
-                {
-                    if (item.Afe1 == 1.ToString())
-                        item.Afe1 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                    if (item.Afe2 == 1.ToString())
-                        item.Afe2 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                    if (item.Afe3 == 1.ToString())
-                        item.Afe3 = sourceClientData[_index].Result.Elements[indexElement].Id;
-                    Job.AddLink(sourceClientData, Job.Types[2], item);
-                }
-            }    
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id) != null)
+                    {
+                        link.Afe2 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id).Id;
+                    }
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id) != null)
+                    {
+                        link.Afe3 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id).Id;
+                    }
+                    sourceClientData[_index].Result.Links.Add(link);
+                }     
+            }
         }
-        */
         public void Recode(ClientData sourceClientData, string id)
         {
-            RecoderInfo.CreateLeftStructDiagrammInfo(id, sourceClientData.Current.Elements);
-            var diff = Int32.Parse(sourceClientData.Integration.Elements[0].Level) - 1;
-            
-            foreach (Elements item in sourceClientData.Integration.Elements)
-            {
-                if (RecoderInfo.LeftStructDiagramm.Count > 0)
-                {
-                    item.Level = (Int32.Parse(item.Level) + diff).ToString();
-                    item.Number = (Int32.Parse(item.Number) + RecoderInfo.LeftStructDiagramm[RecoderInfo.LeftStructDiagramm.FindIndex((x) => x.Level == item.Level)].LastNumber).ToString();
-                }
-            }
+            RecoderInfo.CreateLeftStructDiagrammInfo(id, sourceClientData.Current.Elements);   
         }
     }
 }
