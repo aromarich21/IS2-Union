@@ -94,7 +94,7 @@ namespace frontend_service.Models
             indexClientData = Startup.clientData.Count - 1;
             return indexClientData;
         }
-        public string GetElements(string typeUnit, string entity)
+        public string GetClientData(string typeUnit, string entity)
         {
             var controllerName = "clientdata";
             //typeDiagramm + "elements";

@@ -1,16 +1,54 @@
 ﻿@page
 @model frontend_service.ApplicationResultModel
 @{
-    Layout = null;
+    ViewData["Title"] = "Результат интеграции";
+    string token = Request.Cookies["token_"];
+    List<string> resultElements = Startup.clientData[Model.filejobPage3.IndexClientData].ResultElements;
+    List<string> resultLinks = Startup.clientData[Model.filejobPage3.IndexClientData].ResultLinks;
 }
 
-<!DOCTYPE html>
+<div class="jumbotron">
+    <p style="font-size: 58px">
+        <img src="/Files/logo.png" width="80" height="80" align="middle"> Готово!
+    </p>
+    <p class="lead">Процесс соединения окончен. Получите результат!</p>
+    <hr class="my-4">
+    <p>На данный момент результат выдается в виде содержимого файла .is2. Для успешного завершения необходимо открыть заранее созданный файл is2 через любой текстовый редактор. Далее очистить и поместить содержимое элементов диаграммы между тегами {actions LastId} и {/actions}, а содержимое связей между тегами {links} и {/links}.  </p>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>ApplicationResult</title>
-</head>
-<body>
-</body>
-</html>
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Содержимое элементов диаграммы
+                </button>
+            </h5>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                @foreach (string item in resultElements)
+                {
+                    @item<br />
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Содержимое связей диаграммы
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                @foreach (string item in resultLinks)
+                {
+                    @item<br />
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,16 +2,21 @@
 @model frontend_service.ApplicationStep2Model
 @using Models
 @{
-    ViewData["Title"] = "ApplicationStep2";
+    ViewData["Title"] = "Выбор места слияния диаграмм";
     string token = Request.Cookies["token_"];
     var index = Model.filejobPage2.IndexClientData;
+    var progressvalue = 0;
+    /*
+    <p>UC: @Model.UserChoice</p>
+    <p>YourData: @index</p>
+     */
 }
-
+   
 <div class="jumbotron">
     <p style="font-size: 58px">
         <img src="/Files/logo.png" width="80" height="80" align="middle"> Продолжим?
     </p>
-    <p class="lead">Для успешной интеграции выполните действия по шагам, указанным ниже.</p>
+    <p class="lead">Теперь необходимо выбрать место слияния диаграмм.</p>
 </div>
 
 <form class="form-group" method="post">
@@ -25,6 +30,5 @@
     </div>
 </form>
 
-<p>UC: @Model.UserChoice</p>
-<p>YourData: @index</p>
+
 

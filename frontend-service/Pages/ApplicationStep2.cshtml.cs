@@ -31,6 +31,7 @@ namespace frontend_service
             try
             { 
                 filejobPage2.Integration(UserChoice);
+                Response.Redirect("/ApplicationResult");
             }
             catch
             {
@@ -63,7 +64,7 @@ namespace frontend_service
             try
             {
                 ClientDataJob clientDataJob = new ClientDataJob();
-               var data = JsonConvert.DeserializeObject<List<Elements>>(filejobPage2.GetElements(clientDataJob.Types[0], clientDataJob.Entity[0]));
+               var data = JsonConvert.DeserializeObject<List<Elements>>(filejobPage2.GetClientData(clientDataJob.Types[0], clientDataJob.Entity[0]));
                 try
                 {
                     Startup.clientData[filejobPage2.IndexClientData].clientData.Current.Elements = data;

@@ -8,6 +8,8 @@ namespace frontend_service.Models
     {
         public SelectList Options { get; set; }
         public SelectList ElementsDropdown { get; set; }
+        public List<string> ResultElements { get; set; }
+        public List<string> ResultLinks { get; set; }
         public ClientData clientData { get; set; }
 
         public ClientDataFront() {}
@@ -15,6 +17,8 @@ namespace frontend_service.Models
         public ClientDataFront(string token)
         {
             clientData = new ClientData(token);
+            ResultLinks = new List<string>();
+            ResultElements = new List<string>();
         }
     }
 }

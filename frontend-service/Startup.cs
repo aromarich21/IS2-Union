@@ -10,7 +10,7 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.6.0";
+        static public string version = "0.6.5";
         static public string versionShow = "v" + version + " alpha";
         static public List<ClientDataFront> clientData;
        
