@@ -6,6 +6,11 @@
     string token = Request.Cookies["token_"];
     var index = Model.filejobPage2.IndexClientData;
     var progressvalue = 0;
+    var result = "";
+    foreach(string item in Startup.testvalue)
+    {
+        result += item + ";";
+    }
     /*
     <p>UC: @Model.UserChoice</p>
     <p>YourData: @index</p>
@@ -17,6 +22,7 @@
         <img src="/Files/logo.png" width="80" height="80" align="middle"> Продолжим?
     </p>
     <p class="lead">Теперь необходимо выбрать место слияния диаграмм.</p>
+    <p>@result</p>
 </div>
 
 <form class="form-group" method="post">

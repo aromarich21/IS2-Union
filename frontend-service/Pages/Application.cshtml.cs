@@ -26,6 +26,7 @@ namespace frontend_service
         static public string _token; //token
         public string currentType = "cur"; //typeDiagramm
         public string intType = "int"; //typeDiagramm
+        
 
         ///// body
         public void OnGet() //loaded page
@@ -130,6 +131,7 @@ namespace frontend_service
                 var i = 0;
                 var nodeElements = 0;
                 var nodeLinks = 0;
+                var nodeDkmp = 0;
                 foreach (XElement elements in xdoc.Element("project").Element("models").Elements("primaryModel").Elements("spd").Elements("actions").Elements("pd"))
                 { nodeElements++; }
                 if (nodeElements != 0)
@@ -183,6 +185,39 @@ namespace frontend_service
                             try
                             {
                                 filejobPage1.AddLink(d_links[i], typeDiagramm);
+                            }
+                            catch
+                            {
+                                ErrorModel.ErrorMessage = "Ошибка в POST запросе.";
+                                Response.Redirect("/Error");
+                            }
+                        }
+                    }
+                    goodSchemaFile = true;
+                }
+                else
+                    goodSchemaFile = false;
+
+                foreach (XElement item in xdoc.Element("project").Element("ModuleParams").Elements("Module").Elements("param"))
+                { nodeDkmp++; }
+
+                if (nodeDkmp != 0)
+                {
+                    //XElement elem = xdoc.Element("project").Element("ModuleParams").Elements("Module").Nodes("param")
+                    string d_decStr;
+                    //Startup.testvalue.Add(d_decStr);
+                    
+                    foreach (XElement item in xdoc.Element("project").Element("ModuleParams").Elements("Module").Elements("param"))
+                    {
+                        XAttribute decStr = item.Attribute("decStr");
+
+                        if (decStr != null)
+                        {
+                            d_decStr = decStr.Value;
+                            try
+                            {
+                                //filejobPage1.AddDkmp(d_decStr, typeDiagramm);
+                                Startup.testvalue.Add(d_decStr);
                             }
                             catch
                             {

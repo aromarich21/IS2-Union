@@ -7,6 +7,7 @@ namespace filejob_service.Models
     {
         public List<SubjectElements> SourceSubjects { get; set; }
         public List<StructDiagramm> LeftStructDiagramm { get; set; }
+        public List<StructDiagramm> RightStructDiagramm { get; set; }
 
         public RecoderInfo() 
         {
@@ -53,6 +54,31 @@ namespace filejob_service.Models
                     LeftStructDiagramm.Add(str);
                 }
             }           
+        }
+
+        public void CreateRightStructDiagrammInfo(string idChooseElement, List<Elements> sourceElements)
+        {
+            StructDiagramm str;
+            Elements element = sourceElements.Find((x) => x.Id == idChooseElement);
+            var level = element.Level;
+            var number = (Int32.Parse(element.Number) + 1).ToString();
+            var indexElement = sourceElements.FindIndex((x) => x.Level == level && x.Number == number);
+            var indexSubjects = SourceSubjects.FindIndex((x) => x.ParentId == sourceElements[indexElement].Id);
+            foreach (string item in SourceSubjects[indexSubjects].SubjectId)
+            {
+                Elements elementItem = new Elements();
+                elementItem = sourceElements.Find((x) => x.Id == item);
+
+                if (LeftStructDiagramm.Find((x) => x.Level == elementItem.Level) != null)
+                {
+                    LeftStructDiagramm[LeftStructDiagramm.FindIndex((x) => x.Level == elementItem.Level)].AddNumber(elementItem.Number);
+                }
+                else
+                {
+                    str = new StructDiagramm(elementItem.Level, elementItem.Number);
+                    LeftStructDiagramm.Add(str);
+                }
+            }
         }
     }
 }

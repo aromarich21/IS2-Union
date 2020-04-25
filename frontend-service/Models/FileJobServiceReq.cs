@@ -132,5 +132,20 @@ namespace frontend_service.Models
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             return response;
         }
+
+        public WebResponse AddDkmp(string value, string typeDiagramm) //post req link to fj-service
+        {
+            var controller_name = typeDiagramm + "Dkmp";
+            var postedData = "value=" + value +"&" + "token=" + Token;
+            var postUrl = Url_fjservice + controller_name + "/?" + postedData;
+            WebRequest reqPOST = System.Net.WebRequest.Create(postUrl);
+            reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
+            reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
+            reqPOST.ContentType = "application/x-www-form-urlencoded"; // указываем тип контента
+            Stream sendStream = reqPOST.GetRequestStream();
+            sendStream.Close();
+            WebResponse result = reqPOST.GetResponse();
+            return result;
+        }
     }
 }
