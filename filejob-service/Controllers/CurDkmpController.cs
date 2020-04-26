@@ -38,15 +38,7 @@ namespace filejob_service.Controllers
         {
             if (token != null && token != "")
             {
-                Regex regex = new Regex(@"z(\d*\.?\d*)");
-                MatchCollection matches = regex.Matches(value);
-                if (matches.Count > 0)
-                {
-                    foreach (Match match in matches)
-                    {
-                        Startup.sourceClientData.Find((x) => x.Token == token).Current.DcmpElements.Add(match.Value);
-                    }
-                }
+                Startup.sourceClientData.Find((x) => x.Token == token).Current.DcmpElements.Add(value);
                 return Ok();
             }
             return BadRequest();

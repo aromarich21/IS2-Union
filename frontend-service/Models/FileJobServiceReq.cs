@@ -28,7 +28,7 @@ namespace frontend_service.Models
         {
             var controller_name = typeDiagramm + "elements";
             var postedData = "name=" + element.Name + "&" + "id=" + element.Id + "&" + "level=" + element.Level + "&" + "number=" + element.Number + "&" + "status=" + element.Status + "&" + "type=" + element.Type + "&" + "formalization=" + element.Formalization + "&" + "token=" + Token;
-            var postUrl = Url_fjservice + controller_name + "/?" + postedData;
+            var postUrl = Url_fjservice + controller_name + "?" + postedData;
             WebRequest reqPOST = WebRequest.Create(postUrl);
             reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
             reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
@@ -42,7 +42,7 @@ namespace frontend_service.Models
         {
             var controller_name = typeDiagramm + "links";
             var postedData = "afe1=" + link.Afe1 + "&" + "afe2=" + link.Afe2 + "&" + "afe3=" + link.Afe3 + "&" + "type=" + link.Type + "&" + "token=" + Token;
-            var postUrl = Url_fjservice + controller_name + "/?" + postedData;
+            var postUrl = Url_fjservice + controller_name + "?" + postedData;
             WebRequest reqPOST = System.Net.WebRequest.Create(postUrl);
             reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
             reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
@@ -112,7 +112,7 @@ namespace frontend_service.Models
         {
             var controller_name = "integration";
             var postedData = "id=" + id + "&" + "token=" + Token;
-            var postUrl = Url_fjservice + controller_name + "/?" + postedData;
+            var postUrl = Url_fjservice + controller_name + "?" + postedData;
             WebRequest reqPOST = WebRequest.Create(postUrl);
             reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
             reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
@@ -135,10 +135,10 @@ namespace frontend_service.Models
 
         public WebResponse AddDkmp(string value, string typeDiagramm) //post req link to fj-service
         {
-            var controller_name = typeDiagramm + "Dkmp";
+            var controller_name = typeDiagramm + "dkmp";
             var postedData = "value=" + value +"&" + "token=" + Token;
-            var postUrl = Url_fjservice + controller_name + "/?" + postedData;
-            WebRequest reqPOST = System.Net.WebRequest.Create(postUrl);
+            var postUrl = Url_fjservice + controller_name + "?" + postedData;
+            WebRequest reqPOST = WebRequest.Create(postUrl);
             reqPOST.Method = "POST"; // Устанавливаем метод передачи данных в POST
             reqPOST.Timeout = 120000; // Устанавливаем таймаут соединения
             reqPOST.ContentType = "application/x-www-form-urlencoded"; // указываем тип контента

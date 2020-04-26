@@ -10,10 +10,10 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.6.6";
+        static public string version = "0.6.7";
         static public string versionShow = "v" + version + " alpha";
         static public List<ClientDataFront> clientData;
-        static public List<string> testvalue = new List<string>();
+        static public QAdata qaData = new QAdata();
 
         public Startup(IConfiguration configuration)
         {

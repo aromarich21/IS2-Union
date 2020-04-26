@@ -9,6 +9,8 @@ using frontend_service.Pages;
 using frontend_service.Models;
 using filejob_service.Models;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace frontend_service
 {
@@ -45,7 +47,10 @@ namespace frontend_service
             {
                 UploadToFileJobService();
                 if (ErrorModel.ErrorMessage != "Неправильный формат файла.")
+                {
                     Response.Redirect("/ApplicationStep2");
+                    //Response.Redirect("/QA"); //qa-bridge
+                }
             }
 
             catch
@@ -156,7 +161,7 @@ namespace frontend_service
                             }
                             catch
                             {
-                                ErrorModel.ErrorMessage = "Ошибка в POST запросе.";
+                                ErrorModel.ErrorMessage = "Ошибка в POST запросе: {element}.";
                                 Response.Redirect("/Error");
                             }
                         }
@@ -188,7 +193,7 @@ namespace frontend_service
                             }
                             catch
                             {
-                                ErrorModel.ErrorMessage = "Ошибка в POST запросе.";
+                                ErrorModel.ErrorMessage = "Ошибка в POST запросе: {link}.";
                                 Response.Redirect("/Error");
                             }
                         }
@@ -214,14 +219,27 @@ namespace frontend_service
                         if (decStr != null)
                         {
                             d_decStr = decStr.Value;
+                            Startup.qaData.DecStrElementsString = d_decStr; //qa-bridge
                             try
-                            {
-                                //filejobPage1.AddDkmp(d_decStr, typeDiagramm);
-                                Startup.testvalue.Add(d_decStr);
+                            {                                                             
+                                Regex regex = new Regex(@"z(\d*\.?\d*)");
+                                MatchCollection matches = regex.Matches(d_decStr);
+                                if (matches.Count > 0)
+                                {
+                                    foreach (Match match in matches)
+                                    {
+                                        Startup.qaData.DecStrElements.Add(match.Value); //qa-bridge
+                                        filejobPage1.AddDkmp(match.Value, typeDiagramm);
+                                    }             
+                                }
+                                else
+                                {
+                                    Startup.qaData.DecStrElements.Add("Совпадений не найдено в " + typeDiagramm + " диаграмме!"); //qa-bridge
+                                }                   
                             }
                             catch
                             {
-                                ErrorModel.ErrorMessage = "Ошибка в POST запросе.";
+                                ErrorModel.ErrorMessage = "Ошибка в POST запросе: {dkmp}.";
                                 Response.Redirect("/Error");
                             }
                         }

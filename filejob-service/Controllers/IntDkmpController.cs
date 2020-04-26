@@ -20,15 +20,9 @@ namespace filejob_service.Controllers
             {
                 try
                 {
-                    /*var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData.Find((x) => x.Token == token).Integration.DcmpElements);
-                    return jsonElements;*/
-                    string result = "";
-                    foreach (string item in Startup.sourceClientData.Find((x) => x.Token == token).Integration.DcmpElements)
-                    {
-                        result += item;
-                    }
+                    var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData.Find((x) => x.Token == token).Current.DcmpElements);
+                    return jsonElements;
                 }
-                
                 catch
                 {
                     return "Не найдено";
@@ -43,15 +37,7 @@ namespace filejob_service.Controllers
         {
             if (token != null && token != "")
             {
-                Regex regex = new Regex(@"z(\d*\.?\d*)");
-                MatchCollection matches = regex.Matches(value);
-                if (matches.Count > 0)
-                {
-                    foreach (Match match in matches)
-                    {
-                        Startup.sourceClientData.Find((x) => x.Token == token).Integration.DcmpElements.Add(match.Value);
-                    }
-                }
+                Startup.sourceClientData.Find((x) => x.Token == token).Integration.DcmpElements.Add(value);
                 return Ok();
             }
             return BadRequest();
