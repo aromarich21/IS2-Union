@@ -147,5 +147,6 @@ namespace frontend_service.Models
             WebResponse result = reqPOST.GetResponse();
             return result;
         }
+        
     }
 }

@@ -50,7 +50,8 @@ namespace filejob_service.Models
             Types.Add("int"); //1
             Types.Add("res"); //2
             Entity.Add("elements"); //0
-            Entity.Add("links"); //1
+            Entity.Add("links");//1
+            Entity.Add("dcmp");//2
         }
         public string GetData(string token, string type, string entity)
         {
@@ -68,6 +69,10 @@ namespace filejob_service.Models
                         {
                             return GetLinks(clientData.Current);
                         }
+                        if (entity == Entity[2])
+                        {
+                            return GetDcmp(clientData.Current);
+                        }
                         return GetUnit(clientData.Current);
                     }
                     if (type == Types[1])
@@ -80,6 +85,10 @@ namespace filejob_service.Models
                         {
                             return GetLinks(clientData.Integration);
                         }
+                        if (entity == Entity[2])
+                        {
+                            return GetDcmp(clientData.Integration);
+                        }
                         return GetUnit(clientData.Integration);
                     }
                     if (type == Types[2])
@@ -91,6 +100,10 @@ namespace filejob_service.Models
                         if (entity == Entity[1])
                         {
                             return GetLinks(clientData.Result);
+                        }
+                        if (entity == Entity[2])
+                        {
+                            return GetDcmp(clientData.Result);
                         }
                         return GetUnit(clientData.Result);
                     }
@@ -326,6 +339,12 @@ namespace filejob_service.Models
                 }
             }
             catch { }        
+        }
+        public string GetDcmp(Units unit)
+        {
+            var dcmp = unit.DcmpElements.AsEnumerable();
+            var jsonLinks = new JavaScriptSerializer().Serialize(dcmp);
+            return jsonLinks;
         }
         /*
         public static void ClearClientData()

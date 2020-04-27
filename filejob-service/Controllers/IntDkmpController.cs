@@ -20,7 +20,7 @@ namespace filejob_service.Controllers
             {
                 try
                 {
-                    var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData.Find((x) => x.Token == token).Current.DcmpElements);
+                    var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData.Find((x) => x.Token == token).Integration.DcmpElements);
                     return jsonElements;
                 }
                 catch

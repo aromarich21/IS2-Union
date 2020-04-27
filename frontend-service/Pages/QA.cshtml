@@ -3,25 +3,8 @@
 @{
     ViewData["Title"] = "QA panel";
     string token = Request.Cookies["token_"];
-
-
-    var resultTest1 = "";
-    try
-    {
-        foreach (string item in Startup.qaData.DecStrElements)
-        {
-            resultTest1 += item;
-        }
-    }
-    catch { resultTest1 = "error or empty"; }
-
-    var resultTest2 = "";
-    try
-    {
-        resultTest2 = Startup.qaData.DecStrElementsString;
-    }
-    catch { resultTest2 = "error or empty"; }
-
+    var resultTestShowDecstrElementsString = Model.TestDecstrElementsString();
+    var resultTestGetCurDcmp = Model.TestGetRequestCurrentDecstr();
 }
 
 <div class="jumbotron">
@@ -32,14 +15,28 @@
 
 <div class="accordion" id="accordionExample">
     <div class="card">
-        <div class="card-header" id="headingOne">
+        <div class="card-header" id="headingThree">
             <h5 class="mb-0">
-                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Содержимое <decStr> по элементам
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    GET: /curdcmp
                 </button>
             </h5>
         </div>
-        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                @resultTestGetCurDcmp
+            </div>
+        </div>
+    </div>  
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    Содержимое {decStr} по элементам
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
                 @foreach (string item in Startup.qaData.DecStrElements)
                 {
@@ -49,16 +46,16 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header" id="headingTwo">
+        <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Содержимое <decStr> строкой
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Содержимое {decStr} строкой
                 </button>
             </h5>
         </div>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-                @resultTest2
+                @resultTestShowDecstrElementsString
             </div>
         </div>
     </div>
