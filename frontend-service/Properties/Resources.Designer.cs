@@ -70,6 +70,15 @@ namespace frontend_service.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на frontend-service.
+        /// </summary>
+        internal static string name_service {
+            get {
+                return ResourceManager.GetString("name_service", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на false.
         /// </summary>
         internal static string prod {

@@ -121,8 +121,12 @@
     <value>http://192.168.2.2:80</value>
     <comment>ip_host_filejob-service</comment>
   </data>
+  <data name="name_service" xml:space="preserve">
+    <value>frontend-service</value>
+    <comment>def_name_service</comment>
+  </data>
   <data name="prod" xml:space="preserve">
     <value>false</value>
-    <comment>prod on/off (touch true to on)</comment>
+    <comment>prod on/off (touch true to on) &amp; change host</comment>
   </data>
 </root>
