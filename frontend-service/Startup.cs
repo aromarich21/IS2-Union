@@ -10,19 +10,18 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.6.8";
-        static public string versionShow = "v" + version + " alpha";
+        static public string version = "0.7.0";
+        static public string versionShow = "v " + version + " alpha";
         static public List<ClientDataFront> clientData;
         static public QAdata qaData = new QAdata();
+        public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             clientData = new List<ClientDataFront>();
         }
-
-        public IConfiguration Configuration { get; }
-
+       
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -39,17 +38,12 @@ namespace frontend_service
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();

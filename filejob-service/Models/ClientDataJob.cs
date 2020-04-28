@@ -346,6 +346,28 @@ namespace filejob_service.Models
             var jsonLinks = new JavaScriptSerializer().Serialize(dcmp);
             return jsonLinks;
         }
+        public void DeleteDcmp(List<ClientData> sourceClientData, string typeUnit)
+        {
+            try
+            {
+                if (IndexClientData != "null" && IndexClientData != null)
+                {
+                    if (typeUnit == Types[0])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Current.DcmpElements.Clear();
+                    }
+                    if (typeUnit == Types[1])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Integration.DcmpElements.Clear();
+                    }
+                    if (typeUnit == Types[2])
+                    {
+                        sourceClientData[Int32.Parse(IndexClientData)].Result.DcmpElements.Clear();
+                    }
+                }
+            }
+            catch { }
+        }
         /*
         public static void ClearClientData()
         {

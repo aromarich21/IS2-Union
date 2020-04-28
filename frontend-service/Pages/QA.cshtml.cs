@@ -19,6 +19,56 @@ namespace frontend_service
             DefaultFunction();
         }
 
+        public string TestGetRequestResDecstr()
+        {
+            ClientDataJob clientDataJob = new ClientDataJob();
+            try
+            {
+                List<string> sourceDcmp = new List<string>();
+                string res = "";
+                var result = JsonConvert.DeserializeObject<List<string>>(QAfilejob.GetClientData(clientDataJob.Types[2], clientDataJob.Entity[2]));
+                foreach (string item in result)
+                {
+                    sourceDcmp.Add(item);
+                    res += item + "; ";
+                }
+                if (res == "" || res == null)
+                {
+                    res = "null";
+                }
+                return res;
+            }
+            catch
+            {
+                return QAfilejob.GetClientData(clientDataJob.Types[0], clientDataJob.Entity[2]);
+            }
+        }
+
+        public string TestGetRequestIntDecstr()
+        {
+            ClientDataJob clientDataJob = new ClientDataJob();
+            try
+            {
+                List<string> sourceDcmp = new List<string>();
+                string res = "";
+                var result = JsonConvert.DeserializeObject<List<string>>(QAfilejob.GetClientData(clientDataJob.Types[1], clientDataJob.Entity[2]));
+                foreach (string item in result)
+                {
+                    sourceDcmp.Add(item);
+                    res += item + "; ";
+                }
+                if (res == "" || res == null)
+                {
+                    res = "null";
+                }
+                return res;
+            }
+            catch
+            {
+                return QAfilejob.GetClientData(clientDataJob.Types[0], clientDataJob.Entity[2]);
+            }
+        }
+
         public string TestGetRequestCurrentDecstr()
         {
             ClientDataJob clientDataJob = new ClientDataJob();

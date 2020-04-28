@@ -9,7 +9,6 @@ using frontend_service.Pages;
 using frontend_service.Models;
 using filejob_service.Models;
 using Microsoft.Extensions.Logging;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 namespace frontend_service
@@ -219,7 +218,7 @@ namespace frontend_service
                         if (decStr != null)
                         {
                             d_decStr = decStr.Value;
-                            Startup.qaData.DecStrElementsString = d_decStr; //qa-bridge
+                            //Startup.qaData.DecStrElementsString = d_decStr; //qa-bridge
                             try
                             {                                                             
                                 Regex regex = new Regex(@"z(\d*\.?\d*)");
@@ -228,13 +227,13 @@ namespace frontend_service
                                 {
                                     foreach (Match match in matches)
                                     {
-                                        Startup.qaData.DecStrElements.Add(match.Value); //qa-bridge
+                                        //Startup.qaData.DecStrElements.Add(match.Value); //qa-bridge
                                         filejobPage1.AddDkmp(match.Value, typeDiagramm);
                                     }             
                                 }
                                 else
                                 {
-                                    Startup.qaData.DecStrElements.Add("Совпадений не найдено в " + typeDiagramm + " диаграмме!"); //qa-bridge
+                                    //Startup.qaData.DecStrElements.Add("Совпадений не найдено в " + typeDiagramm + " диаграмме!"); //qa-bridge
                                 }                   
                             }
                             catch

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace filejob_service.Models
 {
@@ -15,6 +16,7 @@ namespace filejob_service.Models
         public string Mark { get; set; }
         public string ParentId { get; set; }
         public string OldId { get; set; }
+        public string OldCode { get; set; }
         //public SubjectElements Subjects { get; set; }
 
         public Elements()
@@ -35,6 +37,14 @@ namespace filejob_service.Models
             Symbol = "122";
             Mark = "";
             OldId = Id;
+            if (Int32.Parse(number) > 9)
+            {
+                OldCode = "z" + level + "." + number;
+            }
+            else
+            {
+                OldCode = "z" + level + number;
+            }         
         }
 
         public Elements(Elements element)
@@ -49,6 +59,14 @@ namespace filejob_service.Models
             Symbol = "122";
             Mark = "";
             OldId = Id;
+            if (Int32.Parse(element.Number) > 9)
+            {
+                OldCode = "z" + element.Level + "." + element.Number;
+            }
+            else
+            {
+                OldCode = "z" + element.Level + element.Number;
+            }
         }
 
         public void AddParentId(List<Links> linksList)

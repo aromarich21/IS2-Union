@@ -40,6 +40,32 @@ namespace frontend_service
             }
         }
 
+        public string GetRequestResDecstr()
+        {
+            ClientDataJob clientDataJob = new ClientDataJob();
+            try
+            {
+                List<string> sourceDcmp = new List<string>();
+                string res = "";
+                var result = JsonConvert.DeserializeObject<List<string>>(filejobPage3.GetClientData(clientDataJob.Types[2], clientDataJob.Entity[2]));
+                foreach (string item in result)
+                {
+                    sourceDcmp.Add(item);
+                    res += item + "; ";
+                }
+                if (res == "" || res == null)
+                {
+                    res = "null";
+                }
+                return res;
+            }
+            catch
+            {
+                return filejobPage3.GetClientData(clientDataJob.Types[0], clientDataJob.Entity[2]);
+            }
+        }
+
+
         public void ShowResult()
         {
             try
@@ -47,12 +73,15 @@ namespace frontend_service
                 ClientDataJob clientDataJob = new ClientDataJob();
                 var data1 = JsonConvert.DeserializeObject<List<Elements>>(filejobPage3.GetClientData(clientDataJob.Types[2], clientDataJob.Entity[0]));
                 var data2 = JsonConvert.DeserializeObject<List<Links>>(filejobPage3.GetClientData(clientDataJob.Types[2], clientDataJob.Entity[1]));
+                var data3 = JsonConvert.DeserializeObject<List<string>>(filejobPage3.GetClientData(clientDataJob.Types[2], clientDataJob.Entity[2]));
                 try
                 {
                     Startup.clientData[filejobPage3.IndexClientData].clientData.Result.Elements = data1;
                     Startup.clientData[filejobPage3.IndexClientData].clientData.Result.Links = data2;
+                    Startup.clientData[filejobPage3.IndexClientData].clientData.Result.DcmpElements = data3;
                     Startup.clientData[filejobPage3.IndexClientData].ResultElements.Clear();
                     Startup.clientData[filejobPage3.IndexClientData].ResultLinks.Clear();
+
                     foreach (var item in data1)
                     {
                         var result = "<pd ";
@@ -77,7 +106,14 @@ namespace frontend_service
                         string type = "type=" + '\u0022' + item.Type + '\u0022';
                         result += afe1 + " " + afe2 + " " + afe3 + " " + type + "/>";
                         Startup.clientData[filejobPage3.IndexClientData].ResultLinks.Add(result);
-                    }               
+                    }
+                    var result3 = "<param decStr=" + '\u0022';
+                    foreach (var item in data3)
+                    {             
+                        result3 += item + ";";
+                    }
+                    result3 += '\u0022' + "/>";
+                    Startup.clientData[filejobPage3.IndexClientData].ResultDcmp = result3;
                 }
                 catch
                 {

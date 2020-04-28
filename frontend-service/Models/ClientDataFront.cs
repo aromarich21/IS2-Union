@@ -10,6 +10,8 @@ namespace frontend_service.Models
         public SelectList ElementsDropdown { get; set; }
         public List<string> ResultElements { get; set; }
         public List<string> ResultLinks { get; set; }
+        public string ResultDcmp { get; set; }
+
         public ClientData clientData { get; set; }
 
         public ClientDataFront() {}

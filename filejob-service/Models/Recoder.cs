@@ -85,13 +85,16 @@ namespace filejob_service.Models
             {
                 Job.DeleteElements(sourceClientData, Job.Types[2]);
                 Job.DeleteLinks(sourceClientData, Job.Types[2]);
+                Job.DeleteDcmp(sourceClientData, Job.Types[2]);
                 sourceClientData[_index].Result.Elements = sourceClientData[_index].Integration.Elements;
                 sourceClientData[_index].Result.Links = sourceClientData[_index].Integration.Links;
+                sourceClientData[_index].Result.DcmpElements = sourceClientData[_index].Integration.DcmpElements;
             }
             if (sourceClientData[_index].Result.Elements[indexElement].Level != "1" && sourceClientData[_index].Result.Elements[indexElement].Number == "1")
             {
                 sourceClientData[_index].Result.Elements[indexElement].Name = sourceClientData[_index].Integration.Elements[0].Name;
                 sourceClientData[_index].Result.Elements[indexElement].OldId = sourceClientData[_index].Integration.Elements[0].Id;
+                sourceClientData[_index].Result.Elements[indexElement].OldCode = sourceClientData[_index].Integration.Elements[0].OldCode;
                 List<Elements> sourceMigrationElements = new List<Elements>();
                 List<Links> sourceMigrationLinks = new List<Links>();
                 var diff = Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Level) - 1;
@@ -136,6 +139,31 @@ namespace filejob_service.Models
                         link.Afe3 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id).Id;
                     }
                     sourceClientData[_index].Result.Links.Add(link);
+                }
+                foreach (string item in sourceClientData[_index].Integration.DcmpElements)
+                {
+                    var value = item;
+                    sourceClientData[_index].Result.DcmpElements.Add(value);
+                }
+                foreach (string item in sourceClientData[_index].Current.DcmpElements)
+                {
+                    var value = item;
+                    sourceClientData[_index].Result.DcmpElements.Add(value);
+                }
+                for (int i = 0; i < sourceClientData[_index].Result.DcmpElements.Count; i++)
+                {
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))) != null)
+                    {
+                        Elements element = new Elements(sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))));
+                        if (Int32.Parse(element.Number) > 9)
+                        {
+                            sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + "." + element.Number;
+                        }
+                        else
+                        {
+                            sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + element.Number;
+                        }                   
+                    }
                 }
                 List<SubjectElements> sourceSubjects = new List<SubjectElements>();
                 foreach(Elements item in sourceClientData[_index].Current.Elements)
