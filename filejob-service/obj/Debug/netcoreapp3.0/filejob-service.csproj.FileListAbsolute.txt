@@ -469,3 +469,4 @@ F:\dev\filejob-service\obj\Debug\netcoreapp3.0\filejob-service.RazorTargetAssemb
 F:\dev\filejob-service\obj\Debug\netcoreapp3.0\filejob-service.csproj.CopyComplete
 F:\dev\filejob-service\obj\Debug\netcoreapp3.0\filejob-service.dll
 F:\dev\filejob-service\obj\Debug\netcoreapp3.0\filejob-service.pdb
+F:\dev\filejob-service\bin\Debug\netcoreapp3.0\filejob-service.Views.dll

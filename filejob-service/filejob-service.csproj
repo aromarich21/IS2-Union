@@ -20,4 +20,6 @@
     <PackageReference Include="WebGrease" Version="1.6.0" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>
