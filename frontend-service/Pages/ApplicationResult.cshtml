@@ -3,9 +3,23 @@
 @{
     ViewData["Title"] = "Результат интеграции";
     string token = Request.Cookies["token_"];
-    List<string> resultElements = Startup.clientData[Model.filejobPage3.IndexClientData].ResultElements;
-    List<string> resultLinks = Startup.clientData[Model.filejobPage3.IndexClientData].ResultLinks;
-    var resultDcmp = Startup.clientData[Model.filejobPage3.IndexClientData].ResultDcmp;
+    var error = Model.error;
+    //List<string> resultElements = Startup.clientData[Model.filejobPage3.IndexClientData].ResultElements;
+    //List<string> resultLinks = Startup.clientData[Model.filejobPage3.IndexClientData].ResultLinks;
+    //var resultDcmp = Startup.clientData[Model.filejobPage3.IndexClientData].ResultDcmp;
+    /*
+    @foreach (string item in resultElements)
+                {
+                    @item<br />
+                }
+                @foreach (string item in resultLinks)
+                {
+                    @item<br />
+                }
+                
+    @resultDcmp
+     */
+
 }
 
 <div class="jumbotron">
@@ -15,6 +29,10 @@
     <p class="lead">Процесс соединения окончен. Получите результат!</p>
     <hr class="my-4">
     <p>На данный момент результат выдается в виде содержимого файла .is2. Для успешного завершения необходимо открыть заранее созданный файл is2 через любой текстовый редактор. Далее очистить и поместить содержимое элементов диаграммы между тегами {actions LastId} и {/actions}, а содержимое связей между тегами {links} и {/links}.  </p>
+    <form method="post">
+        <button class="btn btn-primary" type="submit">Загрузить файл</button>
+        <p>@error</p>
+    </form>
 </div>
 
 <div class="accordion" id="accordionExample">
@@ -28,10 +46,7 @@
         </div>
         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-                @foreach (string item in resultElements)
-                {
-                    @item<br />
-                }
+                
             </div>
         </div>
     </div>
@@ -45,10 +60,7 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
             <div class="card-body">
-                @foreach (string item in resultLinks)
-                {
-                    @item<br />
-                }
+                
             </div>
         </div>
     </div>
@@ -62,7 +74,7 @@
         </div>
         <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
             <div class="card-body">
-                @resultDcmp
+                
             </div>
         </div>
     </div>

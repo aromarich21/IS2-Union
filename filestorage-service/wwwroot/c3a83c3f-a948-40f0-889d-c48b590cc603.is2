@@ -1,0 +1,250 @@
+﻿<project info="" name="IntegrationIS2">
+<user info="" name="by_moduleIntegration"/>
+<models>
+<primaryModel>
+<params LastID="0"/>
+<objects LastID="0"/>
+<spd>
+<actions lastID="0">
+<pd id="1" name="Расчеты клиноременной передачи" level="1" number="1" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="2" name="Проверочный расчет клиноременной передачи" level="2" number="1" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="3" name="Проектировочный" level="2" number="2" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="4" name="Определение начального напряжения в зависимости от типа ремня" level="3" number="1" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="5" name="Определение начального натяжения в зависимости от типа ремня" level="3" number="2" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="6" name="Определение начального напряжения σ0клр для нормальных клиновых ремней" level="4" number="1" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="7" name="Определение начального напряжения σ0клр для узких клиновых ремней" level="4" number="2" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="8" name="Определение начального напряжения σ0клр для поликлиновых ремней" level="4" number="3" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="9" name="Определение приведенного полезного напряжения [σF]0клр" level="5" number="1" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="10" name="Выбор начального напряжения σ0клр из таблицы (2.3) приложения 1" level="5" number="2" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="11" name="Определение окружной силы, Fклр" level="5" number="3" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="12" name="Определение коэффициентов" level="5" number="4" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="13" name="Определение коэффициента C1кр, учитывающего влияние угла обхвата на меньшем шкиве на тяговую способность" level="6" number="2" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="14" name="Определение коэффициента C3кр, учитывающий условие работы передачи" level="6" number="3" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="15" name="Выбор площади сечения ремня, S1 из таблицы (2.1) приложения 1" level="5" number="5" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="16" name="Определение числа ремней, Z" level="5" number="6" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="17" name="Определение окружной силы, Fклр" level="5" number="8" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="18" name="Определение коэффициентов" level="5" number="9" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="19" name="Определение числа ремней, Z" level="5" number="11" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="20" name="Выбор площади сечения десяти ребер поликлинового ремня S10 из таблицы (2.1) приложения 1" level="5" number="10" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="21" name="Определение коэффициента C3кр, учитывающий условие работы передачи" level="6" number="6" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="22" name="Определение коэффициента C1кр, учитывающего влияние угла обхвата на меньшем шкиве на тяговую способность" level="6" number="5" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="23" name="Определение начального натяжения, Q0(клр) для нормальных и узких клиновых ремней" level="4" number="4" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="24" name="Определение начального натяжения, Q0(клр) для поликлиновых ремней" level="4" number="5" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="25" name="Выбор площади сечения ремня, S1 из таблицы (2.1) приложения 1" level="5" number="13" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="26" name="Определение коэффициента χклр, учитывающий влияние центробежных сил, в зависимости от натяжения" level="5" number="14" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="27" name="При малой податливости коэффициент χклр=0,1...0,25" level="6" number="7" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="28" name="При автоматическом натяжении коэффициент χклр=1" level="6" number="8" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="29" name="Определение линейной плотности ремня, q" level="5" number="15" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="30" name="Определение типа ремня RT специалистом" level="6" number="9" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="31" name="Определение профиля ремня PR специалистом" level="6" number="10" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="32" name="Выбор линейной плотности ремня q из таблицы (2.1) приложения 1" level="6" number="11" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="33" name="Определение скорости ремня, νклр" level="5" number="16" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="34" name="Определение числа ремней, Z" level="5" number="17" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="35" name="Выбор площади сечения десяти ребер поликлинового ремня, S10 из таблицы (2.1) приложения 1" level="5" number="19" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="36" name="Определение числа ремней, Z" level="5" number="23" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="37" name="Определение скорости ремня, νклр" level="5" number="22" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="38" name="Выбор линейной плотности ремня q из таблицы (2.1) приложения 1" level="5" number="21" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="39" name="Определение коэффициента χклр, учитывающий влияние центробежных сил, в зависимости от натяжения" level="5" number="20" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="40" name="При малой податливости коэффициент χклр=0,1...0,25" level="6" number="12" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="41" name="При автоматическом натяжении коэффициент χклр=1" level="6" number="13" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="42" name="Определение усилия, действующего на вал, в зависимости от типа ремня" level="3" number="3" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="43" name="Определение усилия Rклр, действующего на вал, для клиновых ремней" level="4" number="6" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="44" name="Определение усилия Rклр, действующего на вал, для поликлиновых ремней" level="4" number="7" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="45" name="Определение начального напряжения σ0клр" level="5" number="25" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="46" name="Выбор площади сечения ремня, S1 из таблицы (2.1) приложения 1" level="5" number="26" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="47" name="Определение числа ремней, Z" level="5" number="27" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="48" name="Определение угла обхвата на меньшем шкиве, α1(клр)" level="5" number="28" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="49" name="Определение начального напряжения σ0клр" level="5" number="30" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="50" name="Расчет Rклр" level="5" number="34" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="51" name="Определение угла обхвата на меньшем шкиве, α1(клр)" level="5" number="33" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="52" name="Определение числа ремней, Z" level="5" number="32" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="53" name="Выбор площади сечения десяти ребер поликлинового ремня, S10 из таблицы (2.1) приложения 1" level="5" number="31" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="54" name="Расчет Rклр" level="5" number="29" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="55" name="Определение угла отклонения усилия Rклр от линии, соединяющей центры шкивов, в зависимости от типа ремней" level="3" number="4" status="1" type="1" formalization="0" symbol="122" mark="" />
+<pd id="56" name="Определение угла θклр отклонения усилия Rклр от линии, соединяющей центры шкивов, для клиновых ремней" level="4" number="8" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="57" name="Определение угла θклр отклонения усилия Rклр от линии, соединяющей центры шкивов, для поликлиновых ремней" level="4" number="9" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="58" name="Определение окружной силы, Fклр" level="5" number="35" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="59" name="Определение начального напряжения σ0клр" level="5" number="36" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="60" name="Выбор площади сечения ремня, S1 из таблицы (2.1) приложения 1" level="5" number="37" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="61" name="Определение числа ремней, Z" level="5" number="38" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="62" name="Определение угла между ветвями ремня, γ1(клр)" level="5" number="39" status="1" type="2" formalization="2" symbol="122" mark="" />
+<pd id="63" name="Определение угла обхвата на меньшем шкиве, α1(клр)" level="6" number="14" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="64" name="Расчет γ1(клр)" level="6" number="15" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="65" name="Расчет θклр" level="5" number="40" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="66" name="Определение окружной силы, Fклр" level="5" number="41" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="67" name="Определение начального напряжения σ0клр" level="5" number="42" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="68" name="Расчет θклр" level="5" number="46" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="69" name="Определение угла между ветвями ремня, γ1(клр)" level="5" number="45" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="70" name="Определение числа ремней, Z" level="5" number="44" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="71" name="Выбор площади сечения десяти ребер поликлинового ремня, S10 из таблицы (2.1) приложения 1" level="5" number="43" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="72" name="Определение коэффициента тяги, φ0 специалистом" level="6" number="1" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="73" name="Расчет σ0клр" level="5" number="7" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="74" name="Определение коэффициента тяги, φ0 специалистом" level="6" number="4" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="75" name="Расчет σ0клр" level="5" number="12" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="76" name="Расчет Q0(клр)" level="5" number="18" status="0" type="0" formalization="0" symbol="122" mark="" />
+<pd id="77" name="Расчет Q0(клр)" level="5" number="24" status="0" type="0" formalization="0" symbol="122" mark="" />
+</actions>
+<links>
+<link afe1="1" afe2="2" afe3="0" type="2"/>
+<link afe1="1" afe2="3" afe3="0" type="2"/>
+<link afe1="1" afe2="2" afe3="3" type="3"/>
+<link afe1="1" afe2="3" afe3="0" type="3"/>
+<link afe1="4" afe2="6" afe3="0" type="2"/>
+<link afe1="4" afe2="7" afe3="0" type="2"/>
+<link afe1="4" afe2="6" afe3="7" type="3"/>
+<link afe1="4" afe2="7" afe3="8" type="3"/>
+<link afe1="4" afe2="8" afe3="0" type="2"/>
+<link afe1="4" afe2="8" afe3="0" type="3"/>
+<link afe1="6" afe2="9" afe3="0" type="2"/>
+<link afe1="6" afe2="10" afe3="0" type="2"/>
+<link afe1="6" afe2="9" afe3="10" type="3"/>
+<link afe1="6" afe2="10" afe3="0" type="3"/>
+<link afe1="7" afe2="11" afe3="0" type="2"/>
+<link afe1="7" afe2="12" afe3="0" type="2"/>
+<link afe1="7" afe2="11" afe3="12" type="3"/>
+<link afe1="7" afe2="15" afe3="0" type="2"/>
+<link afe1="7" afe2="15" afe3="16" type="3"/>
+<link afe1="7" afe2="16" afe3="0" type="2"/>
+<link afe1="7" afe2="16" afe3="73" type="3"/>
+<link afe1="8" afe2="17" afe3="0" type="2"/>
+<link afe1="8" afe2="18" afe3="0" type="2"/>
+<link afe1="8" afe2="17" afe3="18" type="3"/>
+<link afe1="8" afe2="19" afe3="0" type="2"/>
+<link afe1="8" afe2="19" afe3="75" type="3"/>
+<link afe1="8" afe2="20" afe3="0" type="2"/>
+<link afe1="8" afe2="20" afe3="19" type="3"/>
+<link afe1="5" afe2="23" afe3="0" type="2"/>
+<link afe1="5" afe2="24" afe3="0" type="2"/>
+<link afe1="5" afe2="23" afe3="24" type="3"/>
+<link afe1="5" afe2="24" afe3="0" type="3"/>
+<link afe1="23" afe2="25" afe3="0" type="2"/>
+<link afe1="23" afe2="25" afe3="26" type="3"/>
+<link afe1="23" afe2="26" afe3="0" type="2"/>
+<link afe1="23" afe2="26" afe3="29" type="3"/>
+<link afe1="26" afe2="27" afe3="0" type="2"/>
+<link afe1="26" afe2="28" afe3="0" type="2"/>
+<link afe1="26" afe2="27" afe3="28" type="3"/>
+<link afe1="26" afe2="28" afe3="0" type="3"/>
+<link afe1="23" afe2="29" afe3="0" type="2"/>
+<link afe1="23" afe2="29" afe3="33" type="3"/>
+<link afe1="29" afe2="30" afe3="0" type="2"/>
+<link afe1="29" afe2="31" afe3="0" type="2"/>
+<link afe1="29" afe2="30" afe3="31" type="3"/>
+<link afe1="29" afe2="31" afe3="32" type="3"/>
+<link afe1="29" afe2="32" afe3="0" type="2"/>
+<link afe1="29" afe2="32" afe3="0" type="3"/>
+<link afe1="23" afe2="33" afe3="0" type="2"/>
+<link afe1="23" afe2="33" afe3="34" type="3"/>
+<link afe1="23" afe2="34" afe3="0" type="2"/>
+<link afe1="23" afe2="34" afe3="76" type="3"/>
+<link afe1="24" afe2="35" afe3="0" type="2"/>
+<link afe1="24" afe2="35" afe3="39" type="3"/>
+<link afe1="24" afe2="36" afe3="0" type="2"/>
+<link afe1="24" afe2="36" afe3="77" type="3"/>
+<link afe1="24" afe2="37" afe3="0" type="2"/>
+<link afe1="24" afe2="37" afe3="36" type="3"/>
+<link afe1="24" afe2="38" afe3="0" type="2"/>
+<link afe1="24" afe2="38" afe3="37" type="3"/>
+<link afe1="24" afe2="39" afe3="0" type="2"/>
+<link afe1="24" afe2="39" afe3="38" type="3"/>
+<link afe1="39" afe2="40" afe3="0" type="2"/>
+<link afe1="39" afe2="41" afe3="0" type="2"/>
+<link afe1="39" afe2="40" afe3="41" type="3"/>
+<link afe1="39" afe2="41" afe3="0" type="3"/>
+<link afe1="2" afe2="4" afe3="0" type="2"/>
+<link afe1="2" afe2="5" afe3="0" type="2"/>
+<link afe1="2" afe2="5" afe3="42" type="3"/>
+<link afe1="2" afe2="4" afe3="5" type="3"/>
+<link afe1="2" afe2="42" afe3="0" type="2"/>
+<link afe1="2" afe2="42" afe3="55" type="3"/>
+<link afe1="42" afe2="43" afe3="0" type="2"/>
+<link afe1="42" afe2="44" afe3="0" type="2"/>
+<link afe1="42" afe2="43" afe3="44" type="3"/>
+<link afe1="43" afe2="45" afe3="0" type="2"/>
+<link afe1="43" afe2="46" afe3="0" type="2"/>
+<link afe1="43" afe2="45" afe3="46" type="3"/>
+<link afe1="43" afe2="46" afe3="47" type="3"/>
+<link afe1="43" afe2="47" afe3="0" type="2"/>
+<link afe1="43" afe2="47" afe3="48" type="3"/>
+<link afe1="43" afe2="48" afe3="0" type="2"/>
+<link afe1="43" afe2="48" afe3="54" type="3"/>
+<link afe1="44" afe2="49" afe3="0" type="2"/>
+<link afe1="42" afe2="44" afe3="0" type="3"/>
+<link afe1="44" afe2="50" afe3="0" type="2"/>
+<link afe1="44" afe2="50" afe3="0" type="3"/>
+<link afe1="44" afe2="51" afe3="0" type="2"/>
+<link afe1="44" afe2="51" afe3="50" type="3"/>
+<link afe1="44" afe2="52" afe3="0" type="2"/>
+<link afe1="44" afe2="52" afe3="51" type="3"/>
+<link afe1="44" afe2="53" afe3="0" type="2"/>
+<link afe1="44" afe2="53" afe3="52" type="3"/>
+<link afe1="44" afe2="49" afe3="53" type="3"/>
+<link afe1="43" afe2="54" afe3="0" type="2"/>
+<link afe1="43" afe2="54" afe3="0" type="3"/>
+<link afe1="2" afe2="55" afe3="0" type="2"/>
+<link afe1="2" afe2="55" afe3="0" type="3"/>
+<link afe1="55" afe2="56" afe3="0" type="2"/>
+<link afe1="55" afe2="57" afe3="0" type="2"/>
+<link afe1="55" afe2="56" afe3="57" type="3"/>
+<link afe1="56" afe2="58" afe3="0" type="2"/>
+<link afe1="56" afe2="59" afe3="0" type="2"/>
+<link afe1="56" afe2="58" afe3="59" type="3"/>
+<link afe1="56" afe2="59" afe3="60" type="3"/>
+<link afe1="56" afe2="60" afe3="0" type="2"/>
+<link afe1="56" afe2="60" afe3="61" type="3"/>
+<link afe1="56" afe2="61" afe3="0" type="2"/>
+<link afe1="56" afe2="61" afe3="62" type="3"/>
+<link afe1="56" afe2="62" afe3="0" type="2"/>
+<link afe1="56" afe2="62" afe3="65" type="3"/>
+<link afe1="62" afe2="63" afe3="0" type="2"/>
+<link afe1="62" afe2="64" afe3="0" type="2"/>
+<link afe1="62" afe2="63" afe3="64" type="3"/>
+<link afe1="62" afe2="64" afe3="0" type="3"/>
+<link afe1="56" afe2="65" afe3="0" type="2"/>
+<link afe1="56" afe2="65" afe3="0" type="3"/>
+<link afe1="57" afe2="66" afe3="0" type="2"/>
+<link afe1="57" afe2="67" afe3="0" type="2"/>
+<link afe1="57" afe2="66" afe3="67" type="3"/>
+<link afe1="57" afe2="67" afe3="71" type="3"/>
+<link afe1="55" afe2="57" afe3="0" type="3"/>
+<link afe1="57" afe2="68" afe3="0" type="2"/>
+<link afe1="57" afe2="68" afe3="0" type="3"/>
+<link afe1="57" afe2="69" afe3="0" type="2"/>
+<link afe1="57" afe2="69" afe3="68" type="3"/>
+<link afe1="57" afe2="70" afe3="0" type="2"/>
+<link afe1="57" afe2="70" afe3="69" type="3"/>
+<link afe1="57" afe2="71" afe3="0" type="2"/>
+<link afe1="57" afe2="71" afe3="70" type="3"/>
+<link afe1="12" afe2="72" afe3="0" type="2"/>
+<link afe1="12" afe2="13" afe3="0" type="2"/>
+<link afe1="12" afe2="72" afe3="13" type="3"/>
+<link afe1="7" afe2="12" afe3="15" type="3"/>
+<link afe1="12" afe2="14" afe3="0" type="2"/>
+<link afe1="12" afe2="14" afe3="0" type="3"/>
+<link afe1="12" afe2="13" afe3="14" type="3"/>
+<link afe1="7" afe2="73" afe3="0" type="2"/>
+<link afe1="7" afe2="73" afe3="0" type="3"/>
+<link afe1="18" afe2="74" afe3="0" type="2"/>
+<link afe1="18" afe2="22" afe3="0" type="2"/>
+<link afe1="18" afe2="74" afe3="22" type="3"/>
+<link afe1="8" afe2="18" afe3="20" type="3"/>
+<link afe1="18" afe2="21" afe3="0" type="2"/>
+<link afe1="18" afe2="21" afe3="0" type="3"/>
+<link afe1="18" afe2="22" afe3="21" type="3"/>
+<link afe1="8" afe2="75" afe3="0" type="2"/>
+<link afe1="8" afe2="75" afe3="0" type="3"/>
+<link afe1="23" afe2="76" afe3="0" type="2"/>
+<link afe1="23" afe2="76" afe3="0" type="3"/>
+<link afe1="24" afe2="77" afe3="0" type="2"/>
+<link afe1="24" afe2="77" afe3="0" type="3"/>
+</links>
+</spd>
+<matrix/>
+</primaryModel>
+</models>
+<ModuleParams>
+<Module name="PrimaryModelAuto">
+<param decStr="z31;z32;z33;z34;z41;z42;z43;z44;z45;z46;z47;z48;z49;z5.15;z21;"/>
+</Module>
+</ModuleParams>
+</project>

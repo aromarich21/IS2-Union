@@ -9,11 +9,13 @@ namespace frontend_service.Models
     {
         public string Token { get; set; }
         public string Url_fjservice { get; set; }
+        public string Url_filestorage { get; set; }
         public int IndexClientData { get; set; }
         public FileJobServiceReq(string token)
         {
             Token = token;
             Url_fjservice = "https://localhost:44337/api/filejob-service/";
+            Url_filestorage = "https://localhost:44352/api/filestorage-service/";
             if (Properties.Resources.prod == "true")
                 Url_fjservice = Properties.Resources.host_filejob_service + "/api/filejob-service/";
             IndexClientData = AssignClientData();
@@ -147,6 +149,19 @@ namespace frontend_service.Models
             WebResponse result = reqPOST.GetResponse();
             return result;
         }
-        
+
+        public string GetFile()
+        {
+            var controllerName = "download";
+            //typeDiagramm + "elements";
+            var reqUrl = Url_filestorage + controllerName + "?" + "token=" + Token;
+            WebRequest req = WebRequest.Create(reqUrl);
+            WebResponse resp = req.GetResponse();
+            Stream stream = resp.GetResponseStream();
+            StreamReader sr = new StreamReader(stream);
+            string Out = sr.ReadToEnd();
+            sr.Close();
+            return "Ok";
+        }
     }
 }

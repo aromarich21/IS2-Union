@@ -2,15 +2,17 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 
 namespace filestorage_service
 {
     public class Startup
     {
-        static public string version = "0.7.0";
+        static public string version = "0.7.1";
         static public string nameService = "filestorage-service";
         public static string directoryFiles = @"Files";
         public static List<Models.FileInfo> fileStorage = new List<Models.FileInfo>();
@@ -37,6 +39,28 @@ namespace filestorage_service
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
+
+                RequestPath = new PathString("/files")
+            });
+            app.UseDefaultFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
+                RequestPath = new PathString("/files")
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), @"Files")),
+                RequestPath = "/files"
+            });
+
+
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();

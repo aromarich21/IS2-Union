@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 using filejob_service.Models;
 using frontend_service.Models;
 using frontend_service.Pages;
@@ -13,10 +16,27 @@ namespace frontend_service
         static public string _token;
         public FileJobServiceReq filejobPage3;
         private readonly ILogger<ApplicationStep2Model> _logger;
+        public string error = "";
         public void OnGet()
         {
             DefaultFunction();
             ShowResult();
+        }
+
+        public async Task OnPostAsync()
+        {
+            try
+            {
+                //filejobPage3.GetFile();
+                //Redirect(filejobPage3.Url_filestorage + "download?token=" + _token);
+                WebClient webClient = new WebClient();
+                webClient.DownloadFile(filejobPage3.Url_filestorage + "download?token=" + _token, "myFile.is2");
+                error = "ok";
+            }
+            catch(Exception ex)
+            {
+                error = ex.ToString();
+            }
         }
 
         public ApplicationResultModel(ILogger<ApplicationStep2Model> logger)

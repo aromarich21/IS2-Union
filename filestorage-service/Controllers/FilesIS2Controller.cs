@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using filestorage_service.Models;
+using Grpc.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Nancy;
@@ -15,16 +16,36 @@ namespace filestorage_service.Controllers
     public class FilesIS2Controller : ControllerBase
     {
         [HttpGet]
-        public string Get(string token)
+        public ActionResult Get(string token)
         {
             try
             {
-                return Startup.fileStorage.Find((x) => x.Uuid == token).Name;
+                if (Directory.Exists(Startup.directoryFiles))
+                {
+                    string[] files = Directory.GetFiles(Startup.directoryFiles);
+                    foreach (string item in files)
+                    {
+                        var filename = token + ".is2";
+                        if (item == (@"Files\" + filename))
+                        {
+                            Response.ContentType = "APPLICATION/OCTET-STREAM";
+                            // Записываем настоящее имя файла.
+                            string Header = "Attachment; Filename=" + filename;
+                            //Response.AppendHeader("Content-Disposition", Header);
+                            Response.AppendTrailer("Content-Disposition", Header);
+                            // Указываем путь к файлу.
+                            Response.WriteAsync(item);
+                            return Ok();
+                        }
+                    }
+                }
+                return BadRequest("Not found");
             }
             catch
             {
-                return "null";
+                return BadRequest("Error");
             }
+
         }
 
         [HttpPatch]
