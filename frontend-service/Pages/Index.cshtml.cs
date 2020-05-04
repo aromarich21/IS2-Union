@@ -11,6 +11,8 @@ namespace frontend_service.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        public string _cookieAccept;
+        public bool point;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -20,6 +22,20 @@ namespace frontend_service.Pages
         public void OnGet()
         {
             @ErrorModel.ErrorMessage = "";
+            CookiesJob();
+        }
+
+        public void CookiesJob() //job with cookie
+        {
+            _cookieAccept = Request.Cookies["token_"];
+            if (_cookieAccept == null || _cookieAccept == "null" || _cookieAccept == "")
+            {
+                point = true;
+            }
+            else
+            {
+                point = false;
+            }
         }
     }
 }

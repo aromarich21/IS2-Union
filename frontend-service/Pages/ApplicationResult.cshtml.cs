@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
 using filejob_service.Models;
 using frontend_service.Models;
@@ -22,22 +24,26 @@ namespace frontend_service
             DefaultFunction();
             ShowResult();
         }
-
+  
+        /*
         public async Task OnPostAsync()
         {
             try
             {
                 //filejobPage3.GetFile();
                 //Redirect(filejobPage3.Url_filestorage + "download?token=" + _token);
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(filejobPage3.Url_filestorage + "download?token=" + _token, "myFile.is2");
+                
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(filejobPage3.Url_filestorage + "download?token=" + _token, "a.is2");
+                }
                 error = "ok";
             }
             catch(Exception ex)
             {
                 error = ex.ToString();
             }
-        }
+        }*/
 
         public ApplicationResultModel(ILogger<ApplicationStep2Model> logger)
         {
