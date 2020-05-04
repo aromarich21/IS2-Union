@@ -261,8 +261,6 @@ F:\dev\frontend-service\obj\Debug\netcoreapp3.1\staticwebassets\frontend-service
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\staticwebassets\frontend-service.StaticWebAssets.xml
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend_service.Properties.Resources.resources
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.csproj.GenerateResource.cache
-F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cs
-F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cache
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.RazorAssemblyInfo.cache
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.RazorAssemblyInfo.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.AssemblyInfoInputs.cache
@@ -289,3 +287,8 @@ F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.pdb
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\ApplicationResult.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\QA.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Version.cshtml.g.cs
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Interop.SHDocVw.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.mshtml.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\WatiN.Core.dll
+F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cs
+F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cache

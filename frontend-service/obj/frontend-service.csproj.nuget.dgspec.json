@@ -177,6 +177,10 @@
               "target": "Package",
               "version": "[4.7.0, )"
             },
+            "WatiN": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "WebGrease": {
               "target": "Package",
               "version": "[1.6.0, )"

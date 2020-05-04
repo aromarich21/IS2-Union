@@ -28,6 +28,7 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.2",
           "RestSharp": "106.10.1",
           "System.Text.Encoding.CodePages": "4.7.0",
+          "WatiN": "2.1.0",
           "WebGrease": "1.6.0",
           "filejob-service": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
@@ -2277,6 +2278,27 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XmlDocument": "4.3.0"
+        }
+      },
+      "WatiN/2.1.0": {
+        "runtime": {
+          "lib/net40/Interop.SHDocVw.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          },
+          "lib/net40/Microsoft.mshtml.dll": {
+            "assemblyVersion": "7.0.3300.0",
+            "fileVersion": "7.0.3300.1"
+          },
+          "lib/net40/WatiN.Core.dll": {
+            "assemblyVersion": "2.1.0.1196",
+            "fileVersion": "2.1.0.1196"
+          }
+        },
+        "compile": {
+          "lib/net40/Interop.SHDocVw.dll": {},
+          "lib/net40/Microsoft.mshtml.dll": {},
+          "lib/net40/WatiN.Core.dll": {}
         }
       },
       "WebGrease/1.6.0": {
@@ -5292,6 +5314,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "WatiN/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r/aKh34f3duKOfvmd3FAG73J0Cq1xYXgi45qy9CvocIah7AoSib8o6dvMA4tNMN3JL5HByo2BY6zYjguRZId0g==",
+      "path": "watin/2.1.0",
+      "hashPath": "watin.2.1.0.nupkg.sha512"
     },
     "WebGrease/1.6.0": {
       "type": "package",
