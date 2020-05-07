@@ -14,7 +14,7 @@ namespace filestorage_service.Controllers
         [HttpGet]
         public string Get()
         {
-            return "Name: " + Startup.nameService + ";" + " Version: " + Startup.version + ";";
+            return "Name: " + Startup.nameService + ";" + " Version: " + Startup.version + ";" + " Uptime: " + Startup._uptime;
         }
     }
 }

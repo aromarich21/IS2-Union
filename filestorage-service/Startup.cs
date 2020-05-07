@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ namespace filestorage_service
 {
     public class Startup
     {
+        static public string _uptime = DateTime.Now.ToString();
         static public string version = "0.7.1";
         static public string nameService = "filestorage-service";
         public static string directoryFiles = @"Files";

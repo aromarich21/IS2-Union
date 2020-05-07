@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using filejob_service.Models;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ namespace filejob_service
 {
     public class Startup
     {
+        static public string _uptime = DateTime.Now.ToString();
         static public string nameService = "filejob-service";
         static public string version = "0.7.0";
         static public List<ClientData> sourceClientData;
