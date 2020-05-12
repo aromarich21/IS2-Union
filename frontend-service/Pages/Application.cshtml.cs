@@ -100,6 +100,7 @@ namespace frontend_service
                 {
                     filejobPage1.ClearElements(currentType);
                     filejobPage1.ClearLinks(currentType);
+                    //filejobPage1.Clear
                     ParseFileIs2(Upload, currentType);
 
                     try

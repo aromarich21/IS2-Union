@@ -17,6 +17,12 @@ namespace filejob_service.Controllers
         [HttpGet]
         public string Get(string token)
         {
+
+            var elements = Startup.subjTest.AsEnumerable();
+            var jsonElements = new JavaScriptSerializer().Serialize(elements);
+            return jsonElements;
+
+            /*
             try
             {
                 var jsonElements = new JavaScriptSerializer().Serialize(Startup.sourceClientData[Startup.sourceClientData.FindIndex((x) => x.Token == token)].Result.Elements);
@@ -54,6 +60,7 @@ namespace filejob_service.Controllers
             { 
                 return "гавной воняет"; 
             }     
+        }*/
         }
     }
 }

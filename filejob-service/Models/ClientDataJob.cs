@@ -41,7 +41,6 @@ namespace filejob_service.Models
             DefaultFunction();
             Json = GetData(_token, typeUnit, entity);
         }
-
         public void DefaultFunction()
         {
             Types = new List<string>();
@@ -368,15 +367,5 @@ namespace filejob_service.Models
             }
             catch { }
         }
-        /*
-        public static void ClearClientData()
-        {
-            var count = 0;
-            foreach (ClientData item in sourceClientData)
-            {
-                sourceClientData.Remove(item);
-            }
-        }
-        */
     }
 }

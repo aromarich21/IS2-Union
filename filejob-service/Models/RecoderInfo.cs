@@ -24,7 +24,35 @@ namespace filejob_service.Models
         {
             LeftStructDiagramm.Add(structDiagramm);
         }
-
+        public void CreateStructDiagrammInfo(Position position, List<Elements> sourceElements)
+        {         
+            //Position subjPosition = new Position();
+            for (; position.Number > 1; position.Number--)
+            {
+                if (sourceElements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number - 1).ToString())!=null)
+                {
+                    if (SourceSubjects.Find((x) => x.ParentId == sourceElements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number - 1).ToString()).Id) != null)
+                    {
+                        if (SourceSubjects.Find((x) => x.ParentId == sourceElements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number - 1).ToString()).Id).SubjectId != null)
+                        {
+                            foreach (var item in SourceSubjects.Find((x) => x.ParentId == sourceElements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number - 1).ToString()).Id).SubjectId)
+                            {
+                                Elements element = sourceElements.Find((x) => x.Id == item);
+                                if (LeftStructDiagramm.Find((x) => x.Level == element.Level) == null)
+                                {
+                                    StructDiagramm str = new StructDiagramm(element.Level,element.Number);
+                                    AddLeftStructDiagramm(str);
+                                }
+                                else
+                                {
+                                    LeftStructDiagramm.Find((x) => x.Level == element.Level).AddNumber(element.Number);
+                                }
+                            }
+                        }
+                    }              
+                }       
+            }      
+        }
         public void CreateLeftStructDiagrammInfo(string idChooseElement, List<Elements> sourceElements)
         {
             //var id = Int32.Parse(idChooseElement);

@@ -14,6 +14,7 @@ namespace filejob_service
         static public string _uptime = DateTime.Now.ToString();
         static public string nameService = "filejob-service";
         static public string version = "0.7.0";
+        static public List<SubjectElements> subjTest = new List<SubjectElements>();
         static public List<ClientData> sourceClientData;
 
         public Startup(IConfiguration configuration)
