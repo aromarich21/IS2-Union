@@ -1,6 +1,8 @@
 */obj/
 */bin/
 .vs/
+vs/
+.vs
 filestorage-service/Files/
 .vs/application-is2/
 filejob-service/obj/
