@@ -129,3 +129,8 @@ F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2
 F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\filejob-service.dll
 F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\filejob-service.pdb
 F:\dev\filestorage-service\obj\Debug\netcoreapp3.1\filestorage-service.MvcApplicationPartsAssemblyInfo.cs
+F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Framework.dll
+F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Tasks.Core.dll
+F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Utilities.Core.dll
+F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+F:\dev\filestorage-service\bin\Debug\netcoreapp3.1\System.Resources.Extensions.dll

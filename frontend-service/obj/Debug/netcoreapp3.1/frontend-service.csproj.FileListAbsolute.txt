@@ -292,3 +292,8 @@ F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.mshtml.dll
 F:\dev\frontend-service\bin\Debug\netcoreapp3.1\WatiN.Core.dll
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\frontend-service.MvcApplicationPartsAssemblyInfo.cache
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Framework.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Tasks.Core.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Utilities.Core.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\System.CodeDom.dll
+F:\dev\frontend-service\bin\Debug\netcoreapp3.1\System.Resources.Extensions.dll

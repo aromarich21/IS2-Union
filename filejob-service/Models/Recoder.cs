@@ -25,11 +25,13 @@ namespace filejob_service.Models
         {
             RecoderInfo = new RecoderInfo();
         }
+       
         public Recoder(string token)
         {
             Token = token;
             RecoderInfo = new RecoderInfo();
         }
+        
         public Recoder(string token, List<ClientData> sourceClientData)
         {
             Token = token;
@@ -37,6 +39,7 @@ namespace filejob_service.Models
             Job = new ClientDataJob(token, sourceClientData);
             _index = Int32.Parse(Job.IndexClientData);
         }
+        
         public Recoder(string token, List<ClientData> sourceClientData, string id)
         {
             Token = token;
@@ -45,7 +48,7 @@ namespace filejob_service.Models
             _index = Int32.Parse(Job.IndexClientData);
             Integration(sourceClientData, id);
         }
-
+        
         public void Integration(List<ClientData> sourceClientData, string id)
         {
             try
@@ -61,7 +64,7 @@ namespace filejob_service.Models
             }
             catch { }
         }
-
+        
         public void RefreshRecoder(List<ClientData> sourceClientData)
         {
             Job.DeleteElements(sourceClientData, Job.Types[2]);
@@ -100,10 +103,20 @@ namespace filejob_service.Models
             {
                 MigrationFirstElement(sourceClientData, id);
             }
-            if (sourceClientData[_index].Result.Elements[indexElement].Level != "1" && sourceClientData[_index].Result.Elements[indexElement].Number == "1")
+            
+            else if (sourceClientData[_index].Result.Elements[indexElement].Level != "1" && sourceClientData[_index].Result.Elements[indexElement].Number == "1")
             {
                 MigrationFirstNumberSubjectNull(sourceClientData, id, indexElement);
             }
+            else
+            {
+                MigrationFull(sourceClientData, id, indexElement);
+            }
+            /*
+            else
+            {
+                MigrationFull(sourceClientData, id, indexElement);
+            }*/
         }
 
         public void MigrationFirstElement(List<ClientData> sourceClientData, string id)
@@ -301,7 +314,7 @@ namespace filejob_service.Models
                     var countLinks = 0;
                     foreach (Links link in sourceClientData[_index].Result.Links)
                     {
-                        if (link.Afe2 == elementToRemove.Id || link.Afe1 == elementToRemove.ParentId)
+                        if (link.Afe2 == elementToRemove.Id && link.Afe1 == elementToRemove.ParentId || link.Afe3 == elementToRemove.Id && link.Afe1 == elementToRemove.ParentId)
                         {
                             //Links linkToRemove = link;
                             //sourceClientData[_index].Result.Links.Remove(linkToRemove);
@@ -311,7 +324,7 @@ namespace filejob_service.Models
                     }
                     foreach (var index in indexLinkToDel)
                     {
-                        //Links removeLink = sourceClientData[_index].Result.Links[index];
+                        //Links removeLink = new Links(sourceClientData[_index].Result.Links[index]);
                         //sourceClientData[_index].Result.Links.Remove(removeLink);
                         //sourceClientData[_index].Result.Links.Remove(sourceClientData[_index].Result.Links[index]);
                         sourceClientData[_index].Result.Links[index].Afe1 = "0";
@@ -319,114 +332,114 @@ namespace filejob_service.Models
                         sourceClientData[_index].Result.Links[index].Afe3 = "0";
                     }
                 }
-            }
-            //find lastId
-            foreach (Elements item in sourceClientData[_index].Result.Elements)
+            }            
+            foreach (Elements item in sourceClientData[_index].Result.Elements) //find lastId
             {
                 if (Int32.Parse(item.Id) > lastIdElements)
                     lastIdElements = Int32.Parse(item.Id);
-            }
-            //check left elements
-            if (position.Number - 1 > 0)
+            }         
+            if (position.Number - 1 > 0) //check left elements
             {
                 RecoderInfo.CreateStructDiagrammInfo(position, sourceClientData[_index].Result.Elements); //create info left struct
-                //migration
+                        
+                foreach (Elements item in sourceClientData[_index].Integration.Elements) //create source_elements4migration
+                {
+                    if (item != sourceClientData[_index].Integration.Elements[0])
+                    {
+                        Elements element = new Elements(item);
+                        element.Level = (Int32.Parse(element.Level) + diff).ToString();
+                        element.Id = (++lastIdElements).ToString();
+                        sourceMigrationElements.Add(element);
+                        indexMigrationElement++;
+                    }
+                }
+                foreach (Elements item in sourceMigrationElements) //migration elements
+                {
+                    if (RecoderInfo.LeftStructDiagramm.Find((x) => x.Level == item.Level) != null)
+                    {
+                        item.Number = (Int32.Parse(item.Number) + RecoderInfo.LeftStructDiagramm.Find((x) => x.Level == item.Level).LastNumber).ToString();
+                        //RecoderInfo.LeftStructDiagramm.Find((x) => x.Level == item.Level).LastNumber = Int32.Parse(item.Number);
+                    }
+                    Job.AddElement(sourceClientData, Job.Types[2], item);
+                }
+                foreach (Links item in sourceClientData[_index].Integration.Links) //migration links
+                {
+                    Links link = new Links(item);
+
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id) != null)
+                    {
+                        link.Afe1 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id).Id;
+                    }
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id) != null)
+                    {
+                        link.Afe2 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id).Id;
+                    }
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id) != null)
+                    {
+                        link.Afe3 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id).Id;
+                    }
+                    sourceClientData[_index].Result.Links.Add(link);
+                }
+                foreach (string item in sourceClientData[_index].Integration.DcmpElements) //migration integr dcpm
+                {
+                    var value = item;
+                    sourceClientData[_index].Result.DcmpElements.Add(value);
+                }
+                for (int i = 0; i < sourceClientData[_index].Result.DcmpElements.Count; i++) //recode dcmp
+                {
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))) != null)
+                    {
+                        Elements element = new Elements(sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))));
+                        if (Int32.Parse(element.Number) > 9)
+                        {
+                            sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + "." + element.Number;
+                        }
+                        else
+                        {
+                            sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + element.Number;
+                        }
+                    }
+                }
+                var _dcmp = "z" + sourceClientData[_index].Result.Elements[indexElement].Level + sourceClientData[_index].Result.Elements[indexElement].Number;
+                sourceClientData[_index].Result.DcmpElements.Add(_dcmp);
+                foreach (string item in sourceClientData[_index].Current.DcmpElements)
+                {
+                    var value = item;
+                    sourceClientData[_index].Result.DcmpElements.Add(value);
+                }
+                List<SubjectElements> sourceSubjects = new List<SubjectElements>();
+                foreach (Elements item in sourceClientData[_index].Current.Elements)
+                {
+                    if (item.Level == sourceClientData[_index].Result.Elements[indexElement].Level && Int32.Parse(item.Number) > Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Number))
+                    {
+                        SubjectElements subjects = new SubjectElements(item.Id, sourceClientData[_index].Current.Elements);
+                        if (subjects.SubjectId.Count > 0)
+                        {
+                            sourceSubjects.Add(subjects);
+                            //Startup.subjTest.Add(subjects);
+                        }
+                    }
+                }
+                var count = 0;
+                List<int> indexLinkToDelete = new List<int>();
+                foreach (var item in sourceClientData[_index].Result.Links)
+                {
+                    var countCopy = 0;
+                    foreach (var linkCopyCheck in sourceClientData[_index].Result.Links)
+                    {
+                        if (item.Afe1 == linkCopyCheck.Afe1 && item.Afe2 == linkCopyCheck.Afe2 && item.Afe3 == linkCopyCheck.Afe3 && item.Type == linkCopyCheck.Type && count != countCopy)
+                        {
+                            indexLinkToDelete.Add(countCopy);
+                        }
+                        countCopy++;
+                    }
+                    count++;
+                }
             }
             else
             {
-                MigrationFirstNumberSubjectNull(sourceClientData, id, indexElement);
-            }
-
-            var count = 0;
-            foreach (Elements item in sourceClientData[_index].Integration.Elements)
-            {
-                if (count > 0)
-                {
-                    Elements element = new Elements(item);
-                    element.Level = (Int32.Parse(element.Level) + diff).ToString();
-                    element.Id = (++lastIdElements).ToString();
-                    sourceMigrationElements.Add(element);
-                    indexMigrationElement++;
-                }
-                count++;
-            }
-            foreach (Elements item in sourceMigrationElements)
-            {
-                Job.AddElement(sourceClientData, Job.Types[2], item);
-            }
-            foreach (Links item in sourceClientData[_index].Integration.Links)
-            {
-                Links link = new Links(item);
-
-                if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id) != null)
-                {
-                    link.Afe1 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe1 && x.OldId != x.Id).Id;
-                }
-                if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id) != null)
-                {
-                    link.Afe2 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe2 && x.OldId != x.Id).Id;
-                }
-                if (sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id) != null)
-                {
-                    link.Afe3 = sourceClientData[_index].Result.Elements.Find((x) => x.OldId == link.Afe3 && x.OldId != x.Id).Id;
-                }
-                sourceClientData[_index].Result.Links.Add(link);
-            }
-            foreach (string item in sourceClientData[_index].Integration.DcmpElements)
-            {
-                var value = item;
-                sourceClientData[_index].Result.DcmpElements.Add(value);
-            }
-            for (int i = 0; i < sourceClientData[_index].Result.DcmpElements.Count; i++)
-            {
-                if (sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))) != null)
-                {
-                    Elements element = new Elements(sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == sourceClientData[_index].Result.DcmpElements[i] && (x.OldCode != ("z" + x.Level + x.Number) && x.OldCode != ("z" + x.Level + "." + x.Number))));
-                    if (Int32.Parse(element.Number) > 9)
-                    {
-                        sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + "." + element.Number;
-                    }
-                    else
-                    {
-                        sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + element.Number;
-                    }
-                }
-            }
-            var _dcmp = "z" + sourceClientData[_index].Result.Elements[indexElement].Level + sourceClientData[_index].Result.Elements[indexElement].Number;
-            sourceClientData[_index].Result.DcmpElements.Add(_dcmp);
-            foreach (string item in sourceClientData[_index].Current.DcmpElements)
-            {
-                var value = item;
-                sourceClientData[_index].Result.DcmpElements.Add(value);
-            }
-            List<SubjectElements> sourceSubjects = new List<SubjectElements>();
-            foreach (Elements item in sourceClientData[_index].Current.Elements)
-            {
-                if (item.Level == sourceClientData[_index].Result.Elements[indexElement].Level && Int32.Parse(item.Number) > Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Number))
-                {
-                    SubjectElements subjects = new SubjectElements(item.Id, sourceClientData[_index].Current.Elements);
-                    if (subjects.SubjectId.Count > 0)
-                    {
-                        sourceSubjects.Add(subjects);
-                        //Startup.subjTest.Add(subjects);
-                    }
-                }
-            }
-            count = 0;
-            List<int> indexLinkToDelete = new List<int>();
-            foreach (var item in sourceClientData[_index].Result.Links)
-            {
-                var countCopy = 0;
-                foreach (var linkCopyCheck in sourceClientData[_index].Result.Links)
-                {
-                    if (item.Afe1 == linkCopyCheck.Afe1 && item.Afe2 == linkCopyCheck.Afe2 && item.Afe3 == linkCopyCheck.Afe3 && item.Type == linkCopyCheck.Type && count != countCopy)
-                    {
-                        indexLinkToDelete.Add(countCopy);
-                    }
-                    countCopy++;
-                }
-                count++;
-            }
+               MigrationFirstNumberSubjectNull(sourceClientData, id, indexElement);
+            }                            
         }
 
         public void Recode(ClientData sourceClientData, string id)

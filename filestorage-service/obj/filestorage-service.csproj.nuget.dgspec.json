@@ -45,6 +45,10 @@
               "target": "Package",
               "version": "[2.3.55.2, )"
             },
+            "Microsoft.Build.Tasks.Core": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
