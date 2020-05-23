@@ -3,24 +3,22 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true, 
     "iisExpress": {
-      "applicationUrl": "http://localhost:54636",
-      "sslPort": 44337
+      "applicationUrl": "http://localhost:54454",
+      "sslPort": 44391
     }
   },
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/filejob-service/version",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "filejob_service": {
+    "frontend_service": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/filejob-service/version",
-      "applicationUrl": "https://localhost:5001",
+      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

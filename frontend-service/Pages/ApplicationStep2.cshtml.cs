@@ -69,6 +69,11 @@ namespace frontend_service
                 {
                     Startup.clientData[filejobPage2.IndexClientData].clientData.Current.Elements = data;
                     Startup.clientData[filejobPage2.IndexClientData].Options = new SelectList(Startup.clientData[filejobPage2.IndexClientData].clientData.Current.Elements, nameof(Elements.Id), nameof(Elements.Name));
+                    foreach (var item in Startup.clientData[filejobPage2.IndexClientData].Options)
+                    {
+                        Elements element = new Elements(Startup.clientData[filejobPage2.IndexClientData].clientData.Current.Elements.Find((x) => x.Id == item.Value));
+                        item.Text = "z" + element.Level + "." + element.Number + ". " + item.Text;
+                    }
                 }
                 catch
                 {

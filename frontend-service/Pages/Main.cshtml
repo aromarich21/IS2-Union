@@ -1,0 +1,76 @@
+﻿@page
+@model frontend_service.MainModel
+@{
+    ViewData["Title"] = "Главная страница";
+    var hiddenValue = Model.hidden;
+}
+
+
+<div class="container" @hiddenValue>
+    <form method="post">
+        <div class="alert alert-primary" role="alert">
+            <strong>
+                Cookies.
+            </strong>
+            Приложение работает с cookies-файлами. Для успешной интеграции в Вашем браузере должен быть разрешен прием cookies.
+            <button type="submit" class="close">
+                <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="jumbotron">
+    <p style="font-size: 58px">
+        <img src="/Files/logo.png" width="80" height="80" align="middle"> Сервис интеграции диаграмм ИС-2
+    </p>
+    <p class="lead">Приложение позволяет интегрировать диаграммы из разных проектов, тем самым повышая эффективность процесса проектирования автоматизированных систем для комплексов предметных задач.</p>
+    <p><a class="btn btn-primary btn-lg" asp-page="/Application">Попробовать &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Принцип работы</h2>
+        <p>
+            Входной информацией в модуле интеграции является исходный файл и импортируемый файл в формате .is2, содержащий диаграмму подзадачи, которая после обработки алгоритмом присоединяется к диаграмме комплекса задач, в результате чего на выходе получается один файл с результирующей диаграммой.
+        </p>
+        <p>
+            <a class="btn btn-primary" asp-page="/Index">
+                Подробнее
+                <svg class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Что такое ИС-2?</h2>
+        <p>
+            ИС-2 - среда для проектирования начальных и концептуальных моделей. Оба этих комплекса были реализованы с учетом особенностей МАИТ и использовали средства, предоставляемые языком программирования С++, расширенным кроссплатформенным фреймворком Qt, что позволило значительно увеличить функциональность визуальной интегрированной среды и упростить ее применение.
+        </p>
+        <p>
+            <a class="btn btn-primary" asp-page="/About">
+                Подробнее
+                <svg class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Что такое диаграмма?</h2>
+        <p>
+            Диаграмма - графическое описание, отражающее последовательность выполнения алгоритма автоматизированной системы, разрабатываемой для решения предметной задачи в вычислительной среде.
+        </p>
+        <p>
+            <a class="btn btn-primary" asp-page="/Index">
+                Подробнее
+                <svg class="bi bi-three-dots" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm5 0a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </p>
+    </div>
+</div>

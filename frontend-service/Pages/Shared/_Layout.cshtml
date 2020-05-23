@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - IS2service</title>
+    <title>@ViewData["Title"] - IS2-Union</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />  
 </head>
@@ -15,20 +15,25 @@
                     <span class="sr-only">(current)</span>
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" asp-area="" asp-page="/Index">IS2-service</a>
+                <a class="navbar-brand" asp-area="" asp-page="/Index">IS2-Union</a>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="Index">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="Application">Приложение</a>
+                            <a class="nav-link" asp-area="" asp-page="Application">
+                                Приложение
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="About">ИС-2</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="QA">QA</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="Test">test</a>
                         </li>
                     </ul>
                 </div>
@@ -42,7 +47,10 @@
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy;@DateTime.Now.Year - <a asp-area="" asp-page="/Index">IS2service @Startup.versionShow</a>
+            &copy;@DateTime.Now.Year - 
+            <a asp-area="" asp-page="/Index">
+                IS2-Union @Startup.versionShow
+            </a>
         </div>
     </footer>
 

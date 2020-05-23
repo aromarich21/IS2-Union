@@ -297,3 +297,4 @@ F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Tasks.Core.dll
 F:\dev\frontend-service\bin\Debug\netcoreapp3.1\Microsoft.Build.Utilities.Core.dll
 F:\dev\frontend-service\bin\Debug\netcoreapp3.1\System.CodeDom.dll
 F:\dev\frontend-service\bin\Debug\netcoreapp3.1\System.Resources.Extensions.dll
+F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Main.cshtml.g.cs

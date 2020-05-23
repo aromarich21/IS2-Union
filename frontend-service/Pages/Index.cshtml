@@ -2,70 +2,163 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Главная страница";
-    var hiddenValue = Model.hidden;
-
-    /*
-     <button type="submit" class="close" data-dismiss="alert" aria-label="Ok">
-                <span aria-hidden="true">&times;</span>
-            </button>
-
-                <button class="close" type="submit">Загрузить</button>
-                <span aria-hidden="true">Ok</span>
-     * */
+    Layout = "";
 }
-    <div class="container" @hiddenValue>
-        <form method="post">
-            <div class="alert alert-primary" role="alert">
-                <strong>
-                    Cookies.
-                </strong> 
-                Приложение работает с cookies-файлами. Для успешной интеграции в Вашем браузере должен быть разрешен прием cookies.
-                <button type="submit" class="close">
-                    <svg class="bi bi-check" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M13.854 3.646a.5.5 0 010 .708l-7 7a.5.5 0 01-.708 0l-3.5-3.5a.5.5 0 11.708-.708L6.5 10.293l6.646-6.647a.5.5 0 01.708 0z" clip-rule="evenodd" />
-                    </svg>
-                </button>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Сервис интеграции диаграмм" />
+    <meta name="author" content="iddqd" />
+    <title>IS2-Union - Главная страница</title>
+    <link rel="icon" type="image/x-icon" href="~/Files/logo.png" />
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+    <!--nav-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">IS2-Union</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">О приложении</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" asp-page="/Application">Приложение</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contacts">Контакты</a></li>
+                </ul>
             </div>
-        </form>
-    </div>
-
-<div class="jumbotron">
-    <p style="font-size: 58px">
-        <img src="/Files/logo.png" width="80" height="80" align="middle"> Сервис интеграции диаграмм ИС-2
-    </p>
-    <p class="lead">Приложение позволяет интегрировать диаграммы из разных проектов, тем самым повышая эффективность процесса проектирования автоматизированных систем для комплексов предметных задач.</p>
-    <p><a class="btn btn-primary btn-lg" asp-page="/Application">Попробовать &raquo;</a></p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Принцип работы</h2>
-        <p>
-            Входной информацией в модуле интеграции является исходный файл и импортируемый файл в формате .is2, содержащий диаграмму подзадачи, которая после обработки алгоритмом присоединяется к диаграмме комплекса задач, в результате чего на выходе получается один файл с результирующей диаграммой.
-        </p>
-        <p>
-            <a class="btn btn-primary btn-lg" asp-page="/Index">Подробнее &raquo;</a>
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Что такое ИС-2?</h2>
-        <p>
-            ИС-2 - среда для проектирования начальных и концептуальных моделей. Оба этих комплекса были реализованы с учетом особенностей МАИТ и использовали средства, предоставляемые языком программирования С++, расширенным кроссплатформенным фреймворком Qt, что позволило значительно увеличить функциональность визуальной интегрированной среды и упростить ее применение.
-        </p>
-        <p>
-            <a class="btn btn-primary btn-lg" asp-page="/About">Подробнее &raquo;</a>
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Что такое диаграмма?</h2>
-        <p>
-            Диаграмма - графическое описание, отражающее последовательность выполнения алгоритма автоматизированной системы, разрабатываемой для решения предметной задачи в вычислительной среде.
-        </p>
-        <p>
-            <a class="btn btn-primary btn-lg" asp-page="/Index">Подробнее &raquo;</a>
-        </p>
-    </div>
-</div>
-
-
+        </div>
+    </nav>
+    <!--center-->
+    <header class="masthead">
+        <div class="container d-flex h-100 align-items-center">
+            <div class="mx-auto text-center">
+                <h1 class="mx-auto my-0 text-uppercase">IS2-Union</h1>
+                <h2 class="text-white-50 mx-auto mt-2 mb-5">
+                    Сервис интеграции диаграмм ИС-2
+                </h2>
+                <a class="btn btn-primary js-scroll-trigger" asp-page="/Application">
+                    ПОПРОБОВАТЬ
+                </a>
+            </div>
+        </div>
+    </header>
+    <!--about-->
+    <section class="about-section text-center" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="text-white mb-4">
+                        Интеграция с помощью сервиса
+                    </h2>
+                    <p class="text-white-50">
+                        Приложение позволяет интегрировать диаграммы из разных проектов, тем самым повышая эффективность процесса проектирования автоматизированных систем для комплексов предметных задач.
+                    </p>
+                </div>
+            </div>
+            <img class="img-fluid" src="~/assets/img/application.png" alt="" />
+        </div>
+    </section>
+    <!--mini-blocks-->
+    <section class="projects-section bg-light" id="projects">
+        <div class="container">
+            <!--mini-block-1-->
+            <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="~/assets/img/bg-network.jpg" alt="" /></div>
+                <div class="col-xl-4 col-lg-5">
+                    <div class="featured-text text-center text-lg-left">
+                        <h4>
+                            Принцип работы
+                        </h4>
+                        <p class="text-black-50 mb-0">
+                            Входной информацией в модуле интеграции является исходный файл и импортируемый файл в формате .is2, содержащий диаграмму подзадачи, которая после обработки алгоритмом присоединяется к диаграмме комплекса задач, в результате чего на выходе получается один файл с результирующей диаграммой.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--mini-block2-->
+            <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                <div class="col-lg-6"><img class="img-fluid" src="~/assets/img/mini-block-is2.jpg" alt="" /></div>
+                <div class="col-lg-6">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-left">
+                                <h4 class="text-white">
+                                    Что такое ИС-2?
+                                </h4>
+                                <p class="mb-0 text-white-50">
+                                    ИС-2 - среда для проектирования начальных и концептуальных моделей. Оба этих комплекса были реализованы с учетом особенностей МАИТ и использовали средства, предоставляемые языком программирования С++, расширенным кроссплатформенным фреймворком Qt, что позволило значительно увеличить функциональность визуальной интегрированной среды и упростить ее применение.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 ml-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--mini-block3-->
+            <div class="row justify-content-center no-gutters">
+                <div class="col-lg-6"><img class="img-fluid" src="~/assets/img/diagramm1.jpg" alt="" /></div>
+                <div class="col-lg-6 order-lg-first">
+                    <div class="bg-black text-center h-100 project">
+                        <div class="d-flex h-100">
+                            <div class="project-text w-100 my-auto text-center text-lg-right">
+                                <h4 class="text-white">
+                                    Что такое диаграмма?
+                                </h4>
+                                <p class="mb-0 text-white-50">
+                                    Диаграмма - графическое описание, отражающее последовательность выполнения алгоритма автоматизированной системы, разрабатываемой для решения предметной задачи в вычислительной среде.
+                                </p>
+                                <hr class="d-none d-lg-block mb-0 mr-0" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--contact-->
+    <section class="contact-section bg-black" id="contacts">
+        <div class="container">
+            <div class="card-body text-center">
+                <i class="fas fa-envelope text-primary mb-2"></i>
+                <div class="small text-black-50"><a href="#!">aromarich21@hello.mynameis</a></div>
+            </div>
+            <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="https://t.me/itivs">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a class="mx-2" href="https://github.com/aromarich21/application-is2">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a class="mx-2" href="https://docs.microsoft.com/ru-ru/dotnet/core/introduction">
+                    <i class="fab fa-microsoft"></i>
+                </a>
+                <a class="mx-2" href="https://bootstrap-4.ru/docs/4.5/getting-started/introduction/">
+                    <i class="fab fa-bootstrap"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!--footer-->
+    <footer class="footer bg-black small text-center text-white-50">
+        <div class="container">
+            &copy;@DateTime.Now.Year -
+            <a asp-area="" asp-page="/Index">
+                IS2service @Startup.versionShow
+            </a>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</body>
+</html>
 

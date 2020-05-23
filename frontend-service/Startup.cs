@@ -10,7 +10,7 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.7.3";
+        static public string version = "0.7.4";
         static public string versionShow = "v " + version + " alpha";
         static public List<ClientDataFront> clientData;
         static public QAdata qaData = new QAdata();
@@ -26,6 +26,7 @@ namespace frontend_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
