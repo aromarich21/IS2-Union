@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Сервис интеграции диаграмм" />
     <meta name="author" content="iddqd" />
-    <title>IS2-Union - Приложение</title>
+    <title>@Startup.appName | Начнем?</title>
     <link rel="icon" type="image/x-icon" href="~/Files/logo.png" />
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
@@ -25,12 +25,17 @@
     <!--nav-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">IS2-Union</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars"></i></button>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                @Startup.appName
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Меню<i class="fas fa-bars"></i>
+            </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Index">Главная</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#page-top">Приложение</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="~/Index#about">О приложении</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contacts">Контакты</a></li>
                 </ul>
             </div>
         </div>
@@ -53,11 +58,11 @@
     <!--integrationblock-->
     <section class="projects-section bg-light" id="application">
         <div class="container">
-            <form class="was-validated" method="post" enctype="multipart/form-data">                     
+            <form class="was-validated" method="post" enctype="multipart/form-data">
                 <hr />
                 <div class="form-group">
                     <h2>Шаг 1</h2>
-                    <p>Необходимо выбрать исходный файл <*.is2>.</p>       
+                    <p>Необходимо выбрать исходный файл <*.is2>.</p>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="inputFileCurrent" accept=".is2" asp-for="Upload" required>
                         <label class="custom-file-label" for="inputFileCurrent" id="select_file">@titleUpload1</label>
@@ -104,12 +109,32 @@
             </form>
         </div>
     </section>
+    <!--contact-->
+    <section class="contact-section bg-black" id="contacts">
+        <div class="container">
+            <div class="card-body text-center">
+                <i class="fas fa-envelope text-primary mb-2"></i>
+                <div class="small text-black-50"><a href="#!">aromarich21@hello.mynameis</a></div>
+            </div>
+            <div class="social d-flex justify-content-center">
+                <a class="mx-2" href="https://t.me/itivs">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a class="mx-2" href="https://github.com/aromarich21/application-is2">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a class="mx-2" href="http://itvs-stankin.ru/is2.html">
+                    <i class="fas fa-project-diagram"></i>
+                </a>
+            </div>
+        </div>
+    </section>
     <!--footer-->
     <footer class="footer bg-black small text-center text-white-50">
         <div class="container">
             &copy;@DateTime.Now.Year -
             <a asp-area="" asp-page="/Index">
-                IS2service @Startup.versionShow
+                @Startup.appName @Startup.versionShow
             </a>
         </div>
     </footer>

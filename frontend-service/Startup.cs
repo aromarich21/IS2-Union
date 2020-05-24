@@ -10,7 +10,8 @@ namespace frontend_service
 {
     public class Startup
     {
-        static public string version = "0.7.6";
+        static public string appName = "IS2-UNION";
+        static public string version = "0.7.7";
         static public string versionShow = "v " + version + " alpha";
         static public List<ClientDataFront> clientData;
         static public QAdata qaData = new QAdata();
@@ -41,6 +42,8 @@ namespace frontend_service
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            //app.UseStatusCodePagesWithRedirects("/Error");
+            app.UseStatusCodePagesWithReExecute("/Error", "?statusCode={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();

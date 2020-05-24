@@ -273,7 +273,6 @@ F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Application.cshtml.g
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\ApplicationStep2.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 F:\dev\frontend-service\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs

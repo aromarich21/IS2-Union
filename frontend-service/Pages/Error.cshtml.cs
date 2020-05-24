@@ -10,6 +10,7 @@ namespace frontend_service.Pages
     {
         public string RequestId { get; set; }
         static public string ErrorMessage { get; set; }
+        public string TitleError = "ОШИБКА";
         static public string DefaultMessage = "Упс, произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
         private readonly ILogger<ErrorModel> _logger;
@@ -20,6 +21,12 @@ namespace frontend_service.Pages
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+            if (this.HttpContext.Response.StatusCode == 404)
+            {
+                TitleError = "404";
+                ErrorMessage = "Запрашивая страница не найдена!";
+            }
         }
+        
     }
 }
