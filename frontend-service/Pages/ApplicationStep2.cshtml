@@ -44,8 +44,8 @@
             </div>
         </div>
     </nav>
-    <!-- Signup-->
-    <section class="signup-section" id="signup">
+    <!--header-->
+    <section class="signup-section" id="header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto text-center">
@@ -65,21 +65,17 @@
             <hr />
             <form class="form-group" method="post">
                 <h2>Шаг 4</h2>
-                <p>Выберите элемент для интеграции</p>
-                <div class="input-group">
-                    <select class="custom-select" id="dropdown_select" asp-for="SelectId" name="elementsId" asp-items="Startup.clientData[index].Options"></select>
-                    <div class="input-group-append">
-                        <input type="submit" value="Интегрировать" class="btn btn-primary" />
-                    </div>
-                </div>
+                <p>Выберите элемент для интеграции</p>              
+                <select class="form-control" id="dropdown_select" asp-for="SelectId" name="elementsId" asp-items="Startup.clientData[index].Options"></select>
+                </br>
+                <input type="submit" value="Интегрировать" class="btn btn-primary" />
             </form>
             <hr />
         </div>
     </section>
-    <!-- Projects-->
-    <section class="projects-section bg-light" id="projects2">
+    <!--space-->
+    <section class="projects-section bg-light" id="space">
         <div class="container">
-
         </div>
     </section>
     <!--contact-->

@@ -27,7 +27,6 @@ namespace frontend_service
         static public string _token; //token
         public string currentType = "cur"; //typeDiagramm
         public string intType = "int"; //typeDiagramm
-        
 
         ///// body
         public void OnGet() //loaded page
