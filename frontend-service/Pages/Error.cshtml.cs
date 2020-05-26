@@ -15,6 +15,7 @@ namespace frontend_service.Pages
         public string TitleError = "ОШИБКА";
         static public string DefaultMessage = "Упс, произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.";
         public string Message { get; set; }
+        public bool point = false;
         public string Title { get; set; }
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
         private readonly ILogger<ErrorModel> _logger;
@@ -25,15 +26,17 @@ namespace frontend_service.Pages
         public void OnGet()
         {
             RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-            if (this.HttpContext.Response.StatusCode == 404)
-            {
-                TitleError = "404";
-            }
             if (ErrorMessage == null || ErrorMessage == "")
             {
                 ErrorMessage = DefaultMessage;
             }
-            
+            else
+                point = true;
+            if (this.HttpContext.Response.StatusCode == 404)
+            {
+                TitleError = "404";
+                point = false;
+            }
             byte[] utf8title = Encoding.UTF8.GetBytes(TitleError);
             byte[] utf8message = Encoding.UTF8.GetBytes(ErrorMessage);
             Message = Encoding.UTF8.GetString(utf8message);
