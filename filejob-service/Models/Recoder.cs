@@ -302,7 +302,6 @@ namespace filejob_service.Models
             var indexMigrationElement = 0;
             var lastIdElements = 0;
             Position position = new Position(sourceClientData[_index].Result.Elements[indexElement].Level, sourceClientData[_index].Result.Elements[indexElement].Number);
-
             //clear subjects of choose elements
             if (RecoderInfo.SourceSubjects.Find((x) => x.ParentId == sourceClientData[_index].Result.Elements[indexElement].Id) != null)
             {
@@ -345,7 +344,7 @@ namespace filejob_service.Models
                 foreach (Elements item in sourceClientData[_index].Integration.Elements) //create source_elements4migration
                 {
                     if (item != sourceClientData[_index].Integration.Elements[0])
-                    {
+                    {                       
                         Elements element = new Elements(item);
                         element.Level = (Int32.Parse(element.Level) + diff).ToString();
                         element.Id = (++lastIdElements).ToString();
@@ -359,7 +358,7 @@ namespace filejob_service.Models
                     {
                         item.Number = (Int32.Parse(item.Number) + RecoderInfo.LeftStructDiagramm.Find((x) => x.Level == item.Level).LastNumber).ToString();
                         //RecoderInfo.LeftStructDiagramm.Find((x) => x.Level == item.Level).LastNumber = Int32.Parse(item.Number);
-                    }
+                    }                   
                     Job.AddElement(sourceClientData, Job.Types[2], item);
                 }
                 foreach (Links item in sourceClientData[_index].Integration.Links) //migration links
@@ -399,14 +398,7 @@ namespace filejob_service.Models
                             sourceClientData[_index].Result.DcmpElements[i] = "z" + element.Level + element.Number;
                         }
                     }
-                }
-                var _dcmp = "z" + sourceClientData[_index].Result.Elements[indexElement].Level + sourceClientData[_index].Result.Elements[indexElement].Number;
-                sourceClientData[_index].Result.DcmpElements.Add(_dcmp);
-                foreach (string item in sourceClientData[_index].Current.DcmpElements)
-                {
-                    var value = item;
-                    sourceClientData[_index].Result.DcmpElements.Add(value);
-                }
+                }               
                 List<SubjectElements> sourceSubjects = new List<SubjectElements>();
                 foreach (Elements item in sourceClientData[_index].Current.Elements)
                 {
@@ -419,6 +411,54 @@ namespace filejob_service.Models
                             //Startup.subjTest.Add(subjects);
                         }
                     }
+                }
+                RecoderInfo.CreateIntegrationStructDiagramm(sourceClientData[_index].Integration.Elements);
+                position.Level = Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Level);
+                position.Number = Int32.Parse(sourceClientData[_index].Result.Elements[indexElement].Number);
+                var point = true;
+                while (point == true)
+                {
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number + 1).ToString()) != null)
+                    {
+                        Elements element = sourceClientData[_index].Result.Elements.Find((x) => x.Level == position.Level.ToString() && x.Number == (position.Number + 1).ToString());
+                        if (sourceSubjects.Find((x) => x.ParentId == element.Id && x.SubjectId.Count > 0) != null)
+                        {
+                            foreach (var item in sourceSubjects.Find((x) => x.ParentId == element.Id).SubjectId)
+                            {
+                                Elements subjElement = sourceClientData[_index].Result.Elements.Find((x) => x.Id == item);
+                                sourceClientData[_index].Result.Elements.Find((x) => x.Id == item).Number = (RecoderInfo.ForRightStructDiagramm.Find((x) => x.Level == subjElement.Level).Numbers.Count + Int32.Parse(subjElement.Number)).ToString();
+                            }
+                        }
+                        position.Number++;
+                    }
+                    else
+                    {
+                        point = false;
+                    }
+                }
+                var _dcmp = "z" + sourceClientData[_index].Result.Elements[indexElement].Level + sourceClientData[_index].Result.Elements[indexElement].Number;
+                sourceClientData[_index].Result.DcmpElements.Add(_dcmp);
+                foreach (string item in sourceClientData[_index].Current.DcmpElements)
+                {
+                    
+                    var value = item;
+                    /*
+                    if (sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == value) != null)
+                    {
+                        Elements element = new Elements(sourceClientData[_index].Result.Elements.Find((x) => x.OldCode == value));                   
+                        var code = "z" + element.Level;
+                        if (Int32.Parse(element.Number) > 9)
+                        {
+                            code += "." + element.Number;
+                        }
+                        else
+                            code += element.Number;
+                        if (element.OldCode != code)
+                        {
+                            value = code;
+                        }
+                    }*/
+                    sourceClientData[_index].Result.DcmpElements.Add(value);
                 }
                 var count = 0;
                 List<int> indexLinkToDelete = new List<int>();
@@ -434,7 +474,7 @@ namespace filejob_service.Models
                         countCopy++;
                     }
                     count++;
-                }
+                }                              
             }
             else
             {

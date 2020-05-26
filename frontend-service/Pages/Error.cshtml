@@ -51,10 +51,7 @@
                         @if (Model.ShowRequestId)
                         {
                             <p>
-                                @if (ErrorModel.ErrorMessage != "" && ErrorModel.ErrorMessage != null)
-                                    @ErrorModel.ErrorMessage
-                                    else
-                                        @ErrorModel.DefaultMessage
+                                @ErrorModel.ErrorMessage
                             </p>
                         }
                     </div>

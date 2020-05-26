@@ -7,12 +7,13 @@ namespace filejob_service.Models
     {
         public List<SubjectElements> SourceSubjects { get; set; }
         public List<StructDiagramm> LeftStructDiagramm { get; set; }
-        public List<StructDiagramm> RightStructDiagramm { get; set; }
+        public List<StructDiagramm> ForRightStructDiagramm { get; set; }
 
         public RecoderInfo() 
         {
             SourceSubjects = new List<SubjectElements>();
             LeftStructDiagramm = new List<StructDiagramm>();
+            ForRightStructDiagramm = new List<StructDiagramm>();
         }
 
         public void AddSubjectElements(SubjectElements subjectsElement)
@@ -84,27 +85,19 @@ namespace filejob_service.Models
             }           
         }
 
-        public void CreateRightStructDiagrammInfo(string idChooseElement, List<Elements> sourceElements)
+        public void CreateIntegrationStructDiagramm(List<Elements> sourceIntegrElements)
         {
             StructDiagramm str;
-            Elements element = sourceElements.Find((x) => x.Id == idChooseElement);
-            var level = element.Level;
-            var number = (Int32.Parse(element.Number) + 1).ToString();
-            var indexElement = sourceElements.FindIndex((x) => x.Level == level && x.Number == number);
-            var indexSubjects = SourceSubjects.FindIndex((x) => x.ParentId == sourceElements[indexElement].Id);
-            foreach (string item in SourceSubjects[indexSubjects].SubjectId)
+            foreach(var item in sourceIntegrElements)
             {
-                Elements elementItem = new Elements();
-                elementItem = sourceElements.Find((x) => x.Id == item);
-
-                if (LeftStructDiagramm.Find((x) => x.Level == elementItem.Level) != null)
+                if (ForRightStructDiagramm.Find((x) => x.Level == item.Level)!=null)
                 {
-                    LeftStructDiagramm[LeftStructDiagramm.FindIndex((x) => x.Level == elementItem.Level)].AddNumber(elementItem.Number);
+                    ForRightStructDiagramm[ForRightStructDiagramm.FindIndex((x) => x.Level == item.Level)].AddNumber(item.Number);
                 }
                 else
                 {
-                    str = new StructDiagramm(elementItem.Level, elementItem.Number);
-                    LeftStructDiagramm.Add(str);
+                    str = new StructDiagramm(item.Level, item.Number);
+                    ForRightStructDiagramm.Add(str);
                 }
             }
         }
