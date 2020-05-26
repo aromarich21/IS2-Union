@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using System.Text;
+using System.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -33,10 +33,13 @@ namespace frontend_service.Pages
             {
                 ErrorMessage = DefaultMessage;
             }
+            /*
             byte[] utf8title = Encoding.UTF8.GetBytes(TitleError);
             byte[] utf8message = Encoding.UTF8.GetBytes(ErrorMessage);
             Message = Encoding.UTF8.GetString(utf8message);
-            Title = Encoding.UTF8.GetString(utf8title);
+            Title = Encoding.UTF8.GetString(utf8title);*/
+            Message = HttpUtility.HtmlEncode(ErrorMessage);
+            Title = HttpUtility.HtmlEncode(TitleError);
         }     
     }
 }

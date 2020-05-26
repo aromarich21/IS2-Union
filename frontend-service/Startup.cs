@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using frontend_service.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.WebEncoders;
 
 namespace frontend_service
 {
@@ -28,7 +31,7 @@ namespace frontend_service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();      
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
