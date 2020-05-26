@@ -1,9 +1,10 @@
-@page
+﻿@page
 @model ErrorModel
 @{
     ViewData["Title"] = "Error";
     Layout = "";
-    var req_id = Model.RequestId;   
+    var req_id = Model.RequestId;
+    ViewData[Model.Title] = Model.Title;
 }
 
 <!DOCTYPE html>
