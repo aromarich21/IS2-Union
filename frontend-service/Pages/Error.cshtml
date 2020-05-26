@@ -1,4 +1,4 @@
-@page
+﻿@page
 @model ErrorModel
 @{
     ViewData["Title"] = "Error";
@@ -6,6 +6,23 @@
     var req_id = Model.RequestId;
     ViewData[Model.Title] = Model.Title;
     ViewData[Model.Message] = Model.Message;
+    var hiddenTitle = "";
+    var hidden404 = "hidden";
+    var hiddenMessage = "hidden";
+    var hiddenDefault = "";
+    var hidden404message = "hidden";
+    if (Model.Title == "404")
+    {
+        hiddenTitle = "hidden";
+        hidden404 = "";
+        hidden404message = "";
+        hiddenDefault = "hidden";
+    }
+    if (Model.Message != "Упс, произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.")
+    {
+        hiddenMessage = "";
+        hiddenDefault = "hidden";
+    }
 }
 
 <!DOCTYPE html>
@@ -47,11 +64,14 @@
         <div class="container d-flex h-100 align-items-center">
             <div class="mx-auto text-center">
                 <h1 class="mx-auto my-0 text-uppercase">          
-                    <text>@Model.Title</text>
+                    <text @hiddenTitle>Ошибка</text>
+                    <text @hidden404>@ViewData[Model.Title]</text>
                 </h1>
                 <h2 class="text-white-50 mx-auto mt-2 mb-5">
                     <div class="mb-4 lead">
-                        @ViewData[Model.Message]
+                        <text @hiddenMessage>@ViewData[Model.Message]</text>
+                        <text @hiddenDefault>Упс, произошла непредвиденная ошибка. Пожалуйста, попробуйте еще раз.</text>
+                        <text @hidden404message>Запрашиваемая страница не найдена!</text>
                     </div>
                     <div class="social d-flex justify-content-center">
                         <a class="mx-2" href="https://t.me/itivs">

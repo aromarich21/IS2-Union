@@ -28,7 +28,6 @@ namespace frontend_service.Pages
             if (this.HttpContext.Response.StatusCode == 404)
             {
                 TitleError = "404";
-                ErrorMessage = "Запрашиваемая страница не найдена!";
             }
             if (ErrorMessage == null || ErrorMessage == "")
             {
