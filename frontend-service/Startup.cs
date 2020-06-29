@@ -15,7 +15,7 @@ namespace frontend_service
     public class Startup
     {
         static public string appName = "IS2-UNION";
-        static public string version = "0.7.8";
+        static public string version = "0.9";
         static public string versionShow = "v " + version + " alpha";
         static public string _uptime = DateTime.Now.ToString();
         static public List<ClientDataFront> clientData;
