@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.XPath;
 using filejob_service.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.Swagger;
 
 namespace filejob_service
 {
@@ -26,6 +28,15 @@ namespace filejob_service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSwaggerGen(c =>
+            {
+                c.IncludeXmlComments(GetXmlCommentsPath());
+            });
+        }
+
+        private static string GetXmlCommentsPath()
+        {
+            return String.Format(@"{0}\Swagger.xml", AppDomain.CurrentDomain.BaseDirectory);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,6 +53,11 @@ namespace filejob_service
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IS2-Union API");
+            });
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
